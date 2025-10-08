@@ -6,8 +6,11 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
-import indexCss from "../styles/index.css?url";
+import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
+import indexCss from "@/ui/index.css?url";
+import spaceMonoRegular from "../../public/fonts/SpaceMono-Regular.woff2?url";
+import twkLausanne300 from "../../public/fonts/TWKLausanne-300.woff2?url";
+import twkLausanne750 from "../../public/fonts/TWKLausanne-750.woff2?url";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -29,6 +32,27 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
     links: [
       {
+        rel: "preload",
+        href: twkLausanne300,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "",
+      },
+      {
+        rel: "preload",
+        href: twkLausanne750,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "",
+      },
+      {
+        rel: "preload",
+        href: spaceMonoRegular,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "",
+      },
+      {
         rel: "stylesheet",
         href: indexCss,
       },
@@ -46,6 +70,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+
         <TanStackDevtools
           config={{
             position: "bottom-right",
