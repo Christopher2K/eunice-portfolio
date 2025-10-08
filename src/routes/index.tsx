@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css } from "styled/css";
 import { Text } from "@/ui/base";
+import Close from "@/ui/icons/close.svg";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -23,6 +24,7 @@ function App() {
       <Text variant="buttonLargeUnderline">Button Large Underline</Text>
       <Text variant="buttonSmall">Button Small</Text>
       <Text variant="buttonSmallUnderline">Button Small Underline</Text>
+      <Close />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
+import svgr from "vite-plugin-svgr";
+
 
 const config = defineConfig({
   plugins: [
@@ -11,6 +13,9 @@ const config = defineConfig({
     }),
     tanstackStart(),
     viteReact(),
+    svgr({
+      include: '**/*.svg',
+    }),
   ],
 })
 
