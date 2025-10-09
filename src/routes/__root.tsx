@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
+import { Navigation } from "@/ui/elements";
 import indexCss from "@/ui/index.css?url";
 
 interface MyRouterContext {
@@ -66,6 +67,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <Navigation />
         {children}
 
         <TanStackDevtools

@@ -124,10 +124,8 @@ type BaseTextProps = {
   variant: TextVariant;
 };
 
-type TextProps<T extends React.ElementType = "p"> = PolymorphicProps<
-  T,
-  BaseTextProps
->;
+type TextProps<T extends React.ElementType = React.ElementType> =
+  PolymorphicProps<T, BaseTextProps>;
 
 export const Text = ({ variant, as = "p", ...props }: TextProps) => {
   const Component = as ?? "p";

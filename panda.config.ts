@@ -36,6 +36,7 @@ export default defineConfig({
   preflight: true,
   include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
+  jsxFramework: 'react',
   globalFontface,
   globalCss,
   globalVars: {
