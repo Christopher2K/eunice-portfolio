@@ -1,4 +1,4 @@
-import { cva, type RecipeVariant } from "styled/css";
+import { cva, cx, type RecipeVariant } from "styled/css";
 
 const textStyle = cva({
   base: {},
@@ -127,7 +127,14 @@ type BaseTextProps = {
 type TextProps<T extends React.ElementType = React.ElementType> =
   PolymorphicProps<T, BaseTextProps>;
 
-export const Text = ({ variant, as = "p", ...props }: TextProps) => {
+export const Text = <T extends React.ElementType = "p">({
+  variant,
+  as,
+  className,
+  ...props
+}: TextProps<T>) => {
   const Component = as ?? "p";
-  return <Component className={textStyle({ variant })} {...props} />;
+  return (
+    <Component className={cx(textStyle({ variant }), className)} {...props} />
+  );
 };

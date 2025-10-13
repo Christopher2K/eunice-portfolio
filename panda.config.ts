@@ -29,6 +29,9 @@ const globalCss = defineGlobalStyles({
     textRendering: 'optimizeLegibility',
     '-webkit-font-smoothing': 'antialiased',
   },
+  'html, body': {
+    backgroundColor: 'black',
+  }
 })
 
 
@@ -37,6 +40,7 @@ export default defineConfig({
   include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
   jsxFramework: 'react',
+  syntax: 'object-literal',
   globalFontface,
   globalCss,
   globalVars: {
