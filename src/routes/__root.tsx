@@ -4,10 +4,12 @@ import {
   createRootRouteWithContext,
   HeadContent,
   Scripts,
+  useRouter,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import type { PropsWithChildren } from "react";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
-import { Navigation } from "@/ui/elements";
+import { Footer, Navigation } from "@/ui/elements";
 import indexCss from "@/ui/index.css?url";
 
 interface MyRouterContext {
@@ -60,7 +62,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   shellComponent: RootDocument,
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({ children }: PropsWithChildren) {
+  const router = useRouter();
+  console.log(router);
+  const isHome = router.latestLocation.pathname === "/";
+
   return (
     <html lang="en">
       <head>
@@ -69,6 +75,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <Navigation />
         {children}
+
+        {!isHome && <Footer />}
 
         <TanStackDevtools
           config={{
