@@ -1,4 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
+import { css } from "styled/css";
 import { Box, HStack, VStack } from "styled/jsx";
 import { Text } from "@/ui/base";
 import ArrowRightAltIcon from "@/ui/icons/arrow-right-alt.svg";
@@ -69,6 +71,7 @@ export const Carousel = () => {
       ))}
 
       <HStack
+        as="section"
         position="fixed"
         bottom="0"
         left="0"
@@ -79,6 +82,7 @@ export const Carousel = () => {
         px="5"
         gap="14"
         zIndex="10"
+        pointerEvents="none"
       >
         <VStack
           width="full"
@@ -89,7 +93,9 @@ export const Carousel = () => {
         >
           <Text variant="xsmallSubhead">[Selected work]</Text>
           <Text variant="heading4">{currentSlide.name}</Text>
-          <ArrowRightAltIcon />
+          <Link to="/work" className={css({ pointerEvents: "all" })}>
+            <ArrowRightAltIcon />
+          </Link>
         </VStack>
         <VStack gap="3">
           {Frames.map(({ name }, index) => (
