@@ -30,7 +30,7 @@ const globalCss = defineGlobalStyles({
     '-webkit-font-smoothing': 'antialiased',
   },
   'html, body': {
-    backgroundColor: 'black',
+    backgroundColor: 'var(--colors-background)',
   }
 })
 
@@ -52,7 +52,21 @@ export default defineConfig({
       tokens: {
         fonts: {
           lausanne: { value: 'var(--font-lausanne), monospace' },
-          space: { value: 'var(--font-space), sans-serif' }
+          space: { value: 'var(--font-space-mono), sans-serif' }
+        },
+        colors: {
+          background: {
+            value: '#000000',
+          },
+          'menu-background': {
+            value: '#28381F',
+          },
+          'text': {
+            value: '#FFFFFF',
+          },
+          'border': {
+            value: '#FFFFFF',
+          }
         }
       }
     },

@@ -50,13 +50,22 @@ export const Navigation = () => {
       justifyContent="flex-start"
       alignItems="flex-start"
       width="full"
-      height={isOpen ? "100%" : "auto"}
-      position={isOpen ? "fixed" : "sticky"}
-      backgroundColor={isOpen ? "#28381F" : "transparent"}
+      height={{
+        base: isOpen ? "100%" : "auto",
+        lg: "auto",
+      }}
+      position={{
+        base: isOpen ? "fixed" : "sticky",
+        lg: "sticky",
+      }}
+      backgroundColor={{
+        base: isOpen ? "menu-background" : "transparent",
+        lg: "transparent",
+      }}
       top={0}
       left={0}
       zIndex={100}
-      color="white"
+      color="text"
     >
       <HStack
         justifyContent="space-between"
@@ -98,7 +107,7 @@ export const Navigation = () => {
         <HStack
           hideBelow="lg"
           justifyContent="space-between"
-          alignItems="center"
+          alignItems="flex-start"
           flexGrow="1"
           flexBasis="0"
         >
@@ -132,7 +141,7 @@ export const Navigation = () => {
           hideFrom="lg"
           justifyContent="flex-start"
           alignItems="flex-start"
-          backgroundColor="#28381F"
+          backgroundColor="menu-background"
           width="full"
           flexGrow={1}
           alignSelf="stretch"

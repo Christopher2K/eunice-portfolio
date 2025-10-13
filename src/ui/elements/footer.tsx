@@ -18,7 +18,7 @@ export const Footer = () => {
   ];
 
   return (
-    <Box as="footer" color="white" width="full" pb="10" px="5">
+    <Box as="footer" color="text" width="full" pb="10" px="5">
       <Divider mb="10" />
 
       <Flex

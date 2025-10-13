@@ -7,7 +7,7 @@ export const Divider = (props: DividerProps) => {
     <styled.hr
       width="full"
       height="1px"
-      backgroundColor="white"
+      backgroundColor="border"
       opacity="0.3"
       {...props}
     />
