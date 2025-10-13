@@ -54,10 +54,7 @@ export const Navigation = () => {
         base: isOpen ? "100%" : "auto",
         lg: "auto",
       }}
-      position={{
-        base: isOpen ? "fixed" : "sticky",
-        lg: "sticky",
-      }}
+      position="fixed"
       backgroundColor={{
         base: isOpen ? "menu-background" : "transparent",
         lg: "transparent",

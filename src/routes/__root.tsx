@@ -64,7 +64,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: PropsWithChildren) {
   const router = useRouter();
-  console.log(router);
   const isHome = router.latestLocation.pathname === "/";
 
   return (
@@ -78,18 +77,18 @@ function RootDocument({ children }: PropsWithChildren) {
 
         {!isHome && <Footer />}
 
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
+        {/* <TanStackDevtools */}
+        {/*   config={{ */}
+        {/*     position: "bottom-right", */}
+        {/*   }} */}
+        {/*   plugins={[ */}
+        {/*     { */}
+        {/*       name: "Tanstack Router", */}
+        {/*       render: <TanStackRouterDevtoolsPanel />, */}
+        {/*     }, */}
+        {/*     TanStackQueryDevtools, */}
+        {/*   ]} */}
+        {/* /> */}
         <Scripts />
       </body>
     </html>
