@@ -29,6 +29,7 @@ export const ProjectsDesktopCarousel = () => {
 
   return (
     <VStack
+      hideBelow="lg"
       width="100vw"
       height="100vh"
       justifyContent="flex-end"
