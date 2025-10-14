@@ -1,119 +1,5 @@
-import { cva, cx, type RecipeVariant } from "styled/css";
-
-const textStyle = cva({
-  base: {},
-  variants: {
-    variant: {
-      heading1: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "80px",
-        lineHeight: 1.5,
-        letterSpacing: "-2%",
-      },
-      heading2: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "64px",
-        lineHeight: 1.5,
-      },
-      heading3: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "48px",
-        lineHeight: 1.5,
-      },
-      heading4: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "32px",
-        lineHeight: 1.5,
-      },
-      subhead: {
-        fontFamily: "space",
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: 1.5,
-        letterSpacing: "0.04em",
-        textTransform: "uppercase",
-      },
-      smallSubhead: {
-        fontFamily: "space",
-        fontWeight: 400,
-        fontSize: "12px",
-        lineHeight: 1.5,
-        letterSpacing: "0.04em",
-        textTransform: "uppercase",
-      },
-      xsmallSubhead: {
-        fontFamily: "space",
-        fontWeight: 400,
-        fontSize: "10px",
-        lineHeight: 1.5,
-        letterSpacing: "0.04em",
-        textTransform: "uppercase",
-      },
-      body: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "18px",
-        lineHeight: 1.75,
-        letterSpacing: "2%",
-      },
-      bodyStrong: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "20px",
-        lineHeight: 1.65,
-        letterSpacing: "1%",
-      },
-      small: {
-        fontFamily: "lausanne",
-        fontWeight: 300,
-        fontSize: "16px",
-        lineHeight: 1.75,
-      },
-      smallStrong: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "16px",
-        lineHeight: 1.75,
-      },
-      buttonLarge: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "18px",
-        lineHeight: 1.65,
-        letterSpacing: "1%",
-      },
-      buttonLargeUnderline: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "18px",
-        lineHeight: 1.65,
-        letterSpacing: "1%",
-        textDecoration: "underline",
-      },
-      buttonSmall: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "16px",
-        lineHeight: 1.65,
-        letterSpacing: "1%",
-      },
-      buttonSmallUnderline: {
-        fontFamily: "lausanne",
-        fontWeight: 750,
-        fontSize: "16px",
-        lineHeight: 1.65,
-        letterSpacing: "1%",
-        textDecoration: "underline",
-      },
-    },
-  },
-});
-
-type TextVariant = RecipeVariant<typeof textStyle>["variant"];
+import { cx } from "styled/css";
+import { type TextVariantProps, text } from "styled/recipes";
 
 type DistributiveOmit<T, U> = T extends unknown
   ? Pick<T, Exclude<keyof T, U>>
@@ -128,9 +14,7 @@ type PolymorphicProps<
 } & TProps &
   DistributiveOmit<PropsOf<T>, keyof TProps | "as">;
 
-type BaseTextProps = {
-  variant: TextVariant;
-};
+type BaseTextProps = TextVariantProps;
 
 type TextProps<T extends React.ElementType = React.ElementType> =
   PolymorphicProps<T, BaseTextProps>;
@@ -142,7 +26,5 @@ export const Text = <T extends React.ElementType = "p">({
   ...props
 }: TextProps<T>) => {
   const Component = as ?? "p";
-  return (
-    <Component className={cx(textStyle({ variant }), className)} {...props} />
-  );
+  return <Component className={cx(text({ variant }), className)} {...props} />;
 };

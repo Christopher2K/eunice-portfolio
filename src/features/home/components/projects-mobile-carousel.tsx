@@ -83,6 +83,7 @@ export const ProjectsMobileCarousel = () => {
         gap="14"
         zIndex="10"
         pointerEvents="none"
+        mb="20"
       >
         <VStack
           width="full"

@@ -1,16 +1,53 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { css } from "styled/css";
+import { css, cva, type RecipeVariant } from "styled/css";
 import { Box, HStack, styled, VStack } from "styled/jsx";
 import { Text } from "../base";
 import CloseIcon from "../icons/close.svg";
 import DragHandleIcon from "../icons/drag-handle.svg";
 
-export type NavigationProps = {
-  mode: "fixed" | "sticky";
-};
+const navigationStyle = cva({
+  base: {},
+  variants: {
+    mode: {
+      fixed: {
+        position: "fixed",
+      },
+      sticky: {
+        position: "sticky",
+      },
+    },
+    menuOpen: {
+      true: {},
+    },
+  },
+  compoundVariants: [
+    {
+      menuOpen: true,
+      mode: "fixed",
+      css: {
+        position: "fixed",
+      },
+    },
+    {
+      menuOpen: true,
+      mode: "sticky",
+      css: {
+        position: "fixed",
+      },
+    },
+  ],
+  defaultVariants: {
+    mode: "fixed",
+  },
+});
 
-export const Navigation = ({ mode = "fixed" }: NavigationProps) => {
+export type NavigationProps = Extract<
+  RecipeVariant<typeof navigationStyle>,
+  "mode"
+>;
+
+export const Navigation = ({ mode }: NavigationProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,6 +86,7 @@ export const Navigation = ({ mode = "fixed" }: NavigationProps) => {
 
   return (
     <styled.nav
+      className={navigationStyle({ mode, menuOpen: isOpen })}
       display="flex"
       flexDirection="column"
       justifyContent="flex-start"
@@ -58,7 +96,7 @@ export const Navigation = ({ mode = "fixed" }: NavigationProps) => {
         base: isOpen ? "100%" : "auto",
         lg: "auto",
       }}
-      position={isOpen ? "fixed" : mode}
+      position={isOpen ? "fixed" : undefined}
       backgroundColor={{
         base: isOpen ? "menu-background" : "transparent",
         lg: "transparent",

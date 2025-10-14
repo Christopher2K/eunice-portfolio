@@ -1,4 +1,5 @@
 import { defineConfig, defineGlobalStyles, defineGlobalFontface } from "@pandacss/dev";
+import { textRecipe } from './src/ui/recipes/text'
 
 
 const globalFontface = defineGlobalFontface({
@@ -48,7 +49,13 @@ export default defineConfig({
     '--font-space-mono': 'Space Mono, monospace',
   },
   theme: {
+    breakpoints: {
+      lg: '1410px',
+    },
     extend: {
+      recipes: {
+        text: textRecipe
+      },
       tokens: {
         fonts: {
           lausanne: { value: 'var(--font-lausanne), monospace' },
