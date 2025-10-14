@@ -28,7 +28,7 @@ export const ProjectsMobileCarousel = () => {
   const slideNumber = Frames.length;
   const currentSlide = Frames[slideIndex];
 
-  const handleScrollEnd = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     const frameSize = target.scrollHeight / slideNumber;
 
@@ -52,7 +52,7 @@ export const ProjectsMobileCarousel = () => {
       overflow="auto"
       scrollSnapType="y mandatory"
       scrollMargin="100px"
-      onScrollEnd={handleScrollEnd}
+      onScroll={handleScroll}
       position="relative"
     >
       {Frames.map((frame) => (
