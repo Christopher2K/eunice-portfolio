@@ -1,0 +1,24 @@
+providers = ["node"]
+
+[variables]
+NIXPACKS_NODE_VERSION = '22.14.0'
+
+[phases.setup]
+nixPkgs = ['...', 'jq']
+# nixpkgsArchive = '505ad1607f7e54426cfb2d804e48fa2c247f32ba'
+
+[phases.codegen]
+dependsOn = ['install']
+cmds = [
+        'pnpm run prepare'
+]
+
+[phases.build]
+dependsOn = ["...", "codegen"]
+cmds = [
+        'pnpm run build'
+]
+
+[start]
+cmd = "node .output/server/index.mjs"
+
