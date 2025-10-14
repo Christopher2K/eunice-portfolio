@@ -18,7 +18,7 @@ export const ProjectTile = ({ thumbnail, name, type }: ProjectTileProps) => {
     >
       <VStack justifyContent="flex-start" alignItems="flex-start" width="full">
         <Text variant={{ base: "xsmallSubhead", lg: "smallSubhead" }}>
-          {type}
+          [{type}]
         </Text>
         <Text variant={{ base: "small", lg: "body" }}>{name}</Text>
         <styled.img

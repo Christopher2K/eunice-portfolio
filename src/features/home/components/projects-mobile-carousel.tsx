@@ -31,8 +31,10 @@ export const ProjectsMobileCarousel = () => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     const frameSize = target.scrollHeight / slideNumber;
-
-    setSlideIndex(Math.ceil(target.scrollTop / frameSize));
+    const newIndex = Math.ceil(target.scrollTop / frameSize);
+    if (Frames[newIndex]) {
+      setSlideIndex(newIndex);
+    }
   };
 
   const handleCarouselDotClick = (index: number) => {
@@ -47,19 +49,20 @@ export const ProjectsMobileCarousel = () => {
     <Box
       hideFrom="lg"
       ref={sliderContainerRef}
-      width="100vw"
-      height="100vh"
+      width="100svw"
+      height="100svh"
       overflow="auto"
       scrollSnapType="y mandatory"
       scrollMargin="100px"
       onScroll={handleScroll}
       position="relative"
+      scrollbar="hidden"
     >
       {Frames.map((frame) => (
         <Box
           key={frame.name}
-          width="100vw"
-          height="100vh"
+          width="100svw"
+          height="100svh"
           position="relative"
           backgroundPosition="center center"
           backgroundSize="cover"
@@ -83,7 +86,6 @@ export const ProjectsMobileCarousel = () => {
         gap="14"
         zIndex="10"
         pointerEvents="none"
-        mb="20"
       >
         <VStack
           width="full"
