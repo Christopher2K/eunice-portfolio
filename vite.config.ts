@@ -3,7 +3,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import svgr from "vite-plugin-svgr";
-
+import { nitroV2Plugin } from '@tanstack/nitro-v2-vite-plugin'
 
 const config = defineConfig({
   plugins: [
@@ -13,6 +13,9 @@ const config = defineConfig({
     }),
     tanstackStart(),
     viteReact(),
+    nitroV2Plugin({
+      preset: 'node-server'
+    }),
     svgr({
       include: '**/*.svg',
     }),
