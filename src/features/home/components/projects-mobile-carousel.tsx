@@ -20,7 +20,7 @@ const Frames = [
   },
 ];
 
-export const Carousel = () => {
+export const ProjectsMobileCarousel = () => {
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -45,6 +45,7 @@ export const Carousel = () => {
 
   return (
     <Box
+      hideFrom="lg"
       ref={sliderContainerRef}
       width="100vw"
       height="100vh"
@@ -57,7 +58,6 @@ export const Carousel = () => {
       {Frames.map((frame) => (
         <Box
           key={frame.name}
-          data-img={frame.image}
           width="100vw"
           height="100vh"
           position="relative"

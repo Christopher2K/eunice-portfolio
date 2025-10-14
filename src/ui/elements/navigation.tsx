@@ -6,7 +6,11 @@ import { Text } from "../base";
 import CloseIcon from "../icons/close.svg";
 import DragHandleIcon from "../icons/drag-handle.svg";
 
-export const Navigation = () => {
+export type NavigationProps = {
+  mode: "fixed" | "sticky";
+};
+
+export const Navigation = ({ mode = "fixed" }: NavigationProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -54,7 +58,7 @@ export const Navigation = () => {
         base: isOpen ? "100%" : "auto",
         lg: "auto",
       }}
-      position="fixed"
+      position={isOpen ? "fixed" : mode}
       backgroundColor={{
         base: isOpen ? "menu-background" : "transparent",
         lg: "transparent",

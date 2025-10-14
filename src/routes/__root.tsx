@@ -72,23 +72,9 @@ function RootDocument({ children }: PropsWithChildren) {
         <HeadContent />
       </head>
       <body>
-        <Navigation />
+        <Navigation mode={isHome ? "fixed" : "sticky"} />
         {children}
-
         {!isHome && <Footer />}
-
-        {/* <TanStackDevtools */}
-        {/*   config={{ */}
-        {/*     position: "bottom-right", */}
-        {/*   }} */}
-        {/*   plugins={[ */}
-        {/*     { */}
-        {/*       name: "Tanstack Router", */}
-        {/*       render: <TanStackRouterDevtoolsPanel />, */}
-        {/*     }, */}
-        {/*     TanStackQueryDevtools, */}
-        {/*   ]} */}
-        {/* /> */}
         <Scripts />
       </body>
     </html>
