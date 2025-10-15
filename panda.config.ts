@@ -1,5 +1,6 @@
 import { defineConfig, defineGlobalStyles, defineGlobalFontface } from "@pandacss/dev";
 import { textRecipe } from './src/ui/recipes/text'
+import { buttonRecipe } from './src/ui/recipes/button'
 
 
 const globalFontface = defineGlobalFontface({
@@ -54,7 +55,8 @@ export default defineConfig({
     },
     extend: {
       recipes: {
-        text: textRecipe
+        text: textRecipe,
+        button: buttonRecipe
       },
       tokens: {
         fonts: {

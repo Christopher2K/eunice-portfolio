@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { css } from "styled/css";
-import { Box, styled, VStack } from "styled/jsx";
+import { Box, Flex, styled, VStack } from "styled/jsx";
 import { Button, Text } from "@/ui/base";
 
 export const Project = {
@@ -10,7 +10,7 @@ export const Project = {
 
   client: "The National Ballet of Canada",
   agency: "Bruce Mau Design",
-  website: "https://www.eunice.ca",
+  website: "https://www.google.ca",
   description: `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus eu lectus in blandit. 
 Praesent finibus turpis ac fringilla aliquam. Sed ut lobortis tellus, tempus mollis mi. Donec quis imperdiet ex. Ut sed viverra ipsum. 
@@ -33,58 +33,133 @@ export const ProjectView = () => {
       justifyContent="flex-start"
       alignItems="flex-start"
       color="text"
+      gap="0"
     >
       <styled.img
         className={css({
           aspectRatio: "16/9",
           width: "100%",
-          padding: "5",
+          padding: {
+            base: "5",
+            lg: "10",
+          },
+          paddingBottom: {
+            base: "5",
+            lg: "0",
+          },
         })}
         src={Project.mainImage}
         alt={Project.mainImageAlt}
       />
-      <VStack
+      <Flex
+        flexDirection={{
+          base: "column",
+          lg: "row",
+        }}
         width="full"
         justifyContent="flex-start"
         alignItems="flex-start"
         gap="10"
-        px="5"
-        py="10"
+        pt="10"
+        pb={{
+          base: "10",
+          lg: "120px",
+        }}
+        px={{
+          base: "5",
+          lg: "10",
+        }}
       >
-        <Text as="h1" variant="heading3">
-          {Project.title}
-        </Text>
-
-        <VStack
-          as="dl"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          width="full"
+        <Box
+          width={{
+            base: "full",
+            lg: "auto",
+          }}
+          flexBasis={{
+            base: "full",
+            lg: "0",
+          }}
+          flexGrow={{
+            lg: "1",
+          }}
         >
-          {projectDefinitionList.map(({ label, value }) => (
-            <VStack
-              key={label}
-              gap="1"
-              width="full"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-            >
-              <Text as="dt" variant="smallSubhead">
-                {label}
-              </Text>
-              <Text as="dd" variant="small">
-                {value}
-              </Text>
-            </VStack>
-          ))}
-        </VStack>
-
-        <Box width="full">
-          <Text as="p" variant="small">
-            {Project.description}
+          <Text
+            as="h1"
+            variant={{
+              base: "heading3",
+              lg: "heading1",
+            }}
+          >
+            {Project.title}
           </Text>
         </Box>
-      </VStack>
+
+        <VStack
+          width={{
+            base: "full",
+            lg: "auto",
+          }}
+          flexBasis={{
+            lg: "0",
+          }}
+          flexGrow={{
+            lg: "1",
+          }}
+          gap={{
+            base: "10",
+            lg: "100px",
+          }}
+          justifyContent="flex-start"
+          alignItems="flex-start"
+        >
+          <Flex
+            flexDirection={{
+              base: "column",
+              lg: "row",
+            }}
+            as="dl"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            width="full"
+            gap={{
+              base: "5",
+              lg: "10",
+            }}
+          >
+            {projectDefinitionList.map(({ label, value }) => (
+              <VStack
+                key={label}
+                gap="1"
+                width={{
+                  base: "full",
+                  lg: "auto",
+                }}
+                justifyContent="flex-start"
+                alignItems="flex-start"
+                flexBasis={{
+                  lg: "0",
+                }}
+                flexGrow={{
+                  lg: "1",
+                }}
+              >
+                <Text as="dt" variant={{ base: "smallSubhead", lg: "subhead" }}>
+                  {label}
+                </Text>
+                <Text as="dd" variant={{ base: "small", lg: "body" }}>
+                  {value}
+                </Text>
+              </VStack>
+            ))}
+          </Flex>
+
+          <Box width="full">
+            <Text as="p" variant={{ base: "small", lg: "body" }}>
+              {Project.description}
+            </Text>
+          </Box>
+        </VStack>
+      </Flex>
 
       <VStack
         py="10"
@@ -93,9 +168,16 @@ export const ProjectView = () => {
         alignItems="center"
         width="full"
       >
-        <Text variant="smallSubhead">See it live</Text>
-        <Link href={Project.website} to={Project.website}>
-          <Button as="span" size="large" textDecoration="underline">
+        <Text variant={{ base: "smallSubhead", lg: "subhead" }}>
+          See it live
+        </Text>
+        <Link
+          href={Project.website}
+          to={Project.website}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button as="span" size={{ base: "large", lg: "xlarge" }} underline>
             Visit the website now
           </Button>
         </Link>
