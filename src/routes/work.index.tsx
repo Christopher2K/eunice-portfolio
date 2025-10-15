@@ -20,7 +20,7 @@ const Frames = [
   },
 ];
 
-export const Route = createFileRoute("/work")({
+export const Route = createFileRoute("/work/")({
   component: RouteComponent,
 });
 

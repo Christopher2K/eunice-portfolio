@@ -13,7 +13,8 @@ type ProjectTileProps = {
 export const ProjectTile = ({ thumbnail, name, type }: ProjectTileProps) => {
   return (
     <Link
-      to="/work"
+      to="/work/$projectId"
+      params={{ projectId: "1" }}
       className={css({ width: "100%", display: "block", color: "text" })}
     >
       <VStack justifyContent="flex-start" alignItems="flex-start" width="full">
