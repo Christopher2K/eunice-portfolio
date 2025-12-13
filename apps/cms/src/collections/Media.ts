@@ -1,0 +1,35 @@
+import type { CollectionConfig } from "payload";
+
+export const Media: CollectionConfig = {
+  slug: "media",
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: "ratio",
+      type: "select",
+      required: true,
+      options: [
+        { label: "1:1", value: "1/1" },
+        { label: "4:3", value: "2/3" },
+        { label: "4:3", value: "3/4" },
+        { label: "4:3", value: "4/3" },
+        { label: "16:9", value: "16/9" },
+      ],
+    },
+    {
+      name: "caption",
+      type: "text",
+      required: false,
+    },
+    {
+      name: "alt",
+      type: "text",
+      required: true,
+    },
+  ],
+  upload: {
+    mimeTypes: ["image/*", "video/*"],
+  },
+};

@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+  s3:
+    restart: always
+    image: rustfs/rustfs:latest
+    volumes:
+      - rustfsdata:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+volumes:
+  pgdata:
+  rustfsdata:

@@ -1,3 +1,9 @@
+packages:
+  - apps/portfolio
+  - apps/cms
+
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - '@tailwindcss/oxide'
   - esbuild
+  - sharp
