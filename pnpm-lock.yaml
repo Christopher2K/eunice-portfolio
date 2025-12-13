@@ -90,6 +90,9 @@ importers:
       '@payloadcms/live-preview':
         specifier: 3.64.0
         version: 3.64.0
+      '@payloadcms/sdk':
+        specifier: 3.64.0
+        version: 3.64.0(graphql@16.12.0)(typescript@5.7.2)
       '@t3-oss/env-core':
         specifier: ~0.13.8
         version: 0.13.8(typescript@5.7.2)(zod@4.1.13)
@@ -1783,6 +1786,9 @@ packages:
       payload: 3.64.0
       react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
       react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+
+  '@payloadcms/sdk@3.64.0':
+    resolution: {integrity: sha512-g0IBmBbu0/39YIzalYj62Lk+2zWyDY8CwH3rWLhyTZJ9qugo99a+fgbew6T053T3dKPcRDnLNsIFsUiPX7ocVw==}
 
   '@payloadcms/storage-s3@3.64.0':
     resolution: {integrity: sha512-1ho618AWTSxtkOvKv2XTfo2WJXnuNdYIQ7L3jCzpwEDf1ASLg1/5Ml3wP1xvb+sp96GcHCu9Rzq4b6WBnLc3dQ==}
@@ -7726,6 +7732,17 @@ snapshots:
       - typescript
       - yjs
 
+  '@payloadcms/sdk@3.64.0(graphql@16.12.0)(typescript@5.7.2)':
+    dependencies:
+      payload: 3.64.0(graphql@16.12.0)(typescript@5.7.2)
+      qs-esm: 7.0.2
+      ts-essentials: 10.0.3(typescript@5.7.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - graphql
+      - typescript
+      - utf-8-validate
+
   '@payloadcms/storage-s3@3.64.0(@types/react@19.1.8)(monaco-editor@0.55.1)(next@15.5.9(@babel/core@7.28.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.64.0(graphql@16.12.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)':
     dependencies:
       '@aws-sdk/client-s3': 3.948.0
@@ -10813,6 +10830,45 @@ snapshots:
 
   pathval@2.0.1: {}
 
+  payload@3.64.0(graphql@16.12.0)(typescript@5.7.2):
+    dependencies:
+      '@next/env': 15.5.9
+      '@payloadcms/translations': 3.64.0
+      '@types/busboy': 1.5.4
+      ajv: 8.17.1
+      bson-objectid: 2.0.4
+      busboy: 1.6.0
+      ci-info: 4.3.1
+      console-table-printer: 2.12.1
+      croner: 9.1.0
+      dataloader: 2.2.3
+      deepmerge: 4.3.1
+      file-type: 19.3.0
+      get-tsconfig: 4.8.1
+      graphql: 16.12.0
+      http-status: 2.1.0
+      image-size: 2.0.2
+      ipaddr.js: 2.2.0
+      jose: 5.9.6
+      json-schema-to-typescript: 15.0.3
+      minimist: 1.2.8
+      path-to-regexp: 6.3.0
+      pino: 9.14.0
+      pino-pretty: 13.1.2
+      pluralize: 8.0.0
+      qs-esm: 7.0.2
+      sanitize-filename: 1.6.3
+      scmp: 2.1.0
+      ts-essentials: 10.0.3(typescript@5.7.2)
+      tsx: 4.20.3
+      undici: 7.10.0
+      uuid: 10.0.0
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+
   payload@3.64.0(graphql@16.12.0)(typescript@5.7.3):
     dependencies:
       '@next/env': 15.5.9
@@ -11659,6 +11715,10 @@ snapshots:
   truncate-utf8-bytes@1.0.2:
     dependencies:
       utf8-byte-length: 1.0.5
+
+  ts-essentials@10.0.3(typescript@5.7.2):
+    optionalDependencies:
+      typescript: 5.7.2
 
   ts-essentials@10.0.3(typescript@5.7.3):
     optionalDependencies:

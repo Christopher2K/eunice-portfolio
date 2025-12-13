@@ -23,7 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "styled/*": ["./styled-system/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@payload-types": ["../../../shared/payload-types.ts"]
     }
   }
 }
