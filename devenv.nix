@@ -23,6 +23,8 @@
 
     PAYLOAD_URL = "http://localhost:3001";
     PORTFOLIO_URL = "http://localhost:3000";
+
+    VITE_PAYLOAD_URL = config.env.PAYLOAD_URL;
   };
 
   services.postgres = {
