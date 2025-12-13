@@ -25,7 +25,7 @@ export default buildConfig({
   },
   collections: [Users, Media, ProjectTypes, Projects, MediaDispositions],
   cors: "*",
-  csrf: ["http://localhost:3000"],
+  csrf: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
   typescript: {

@@ -10,6 +10,8 @@ export const env = createEnv({
     S3_ACCESS_SECRET_KEY: z.string().min(1),
     S3_BUCKET: z.string().min(1),
     S3_REGION: z.string().min(1),
+    PAYLOAD_URL: z.string().url(),
+    PORTFOLIO_URL: z.string().url(),
   },
   runtimeEnv: process.env,
 });

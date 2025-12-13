@@ -19,7 +19,10 @@
     S3_BUCKET = "payload-cms";
     S3_REGION = "us-east-1";
 
-    PAYLOAD_URI = "http://localhost:3001";
+    PAYLOAD_SECRET = "a9d06e1c9974e7e6416d5006c1bd169e6d942772e2dd3226a481acc48e3e40f0";
+
+    PAYLOAD_URL = "http://localhost:3001";
+    PORTFOLIO_URL = "http://localhost:3000";
   };
 
   services.postgres = {
