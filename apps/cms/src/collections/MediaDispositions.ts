@@ -2,6 +2,9 @@ import type { CollectionConfig } from "payload";
 
 export const MediaDispositions: CollectionConfig = {
   access: {
+    create: ({ req }) => Boolean(req.user),
+    update: ({ req }) => Boolean(req.user),
+    delete: ({ req }) => Boolean(req.user),
     read: () => true,
   },
   slug: "mediaDispositions",

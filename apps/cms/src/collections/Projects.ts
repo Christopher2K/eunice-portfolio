@@ -4,6 +4,9 @@ export const Projects: CollectionConfig = {
   slug: "projects",
   orderable: true,
   access: {
+    create: ({ req }) => Boolean(req.user),
+    update: ({ req }) => Boolean(req.user),
+    delete: ({ req }) => Boolean(req.user),
     read: () => true,
   },
   admin: {
