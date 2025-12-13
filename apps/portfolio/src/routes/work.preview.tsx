@@ -1,13 +1,14 @@
 import { ready, subscribe, unsubscribe } from "@payloadcms/live-preview";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { env } from "@/env";
 import { ProjectView } from "@/features/projects/components/project-view";
 
 export const useLivePreview = <T extends {}>(): {
   data: T | null;
   isLoading: boolean;
 } => {
-  const serverURL = "http://localhost:3001";
+  const serverURL = env.VITE_PAYLOAD_URL;
   const depth = 1;
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
