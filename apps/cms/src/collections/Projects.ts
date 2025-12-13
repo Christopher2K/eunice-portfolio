@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { env } from "@/env/server";
 
 export const Projects: CollectionConfig = {
   slug: "projects",
@@ -12,7 +13,7 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     livePreview: {
-      url: "http://localhost:3000/work/preview",
+      url: ({ data }) => `${env.PORTFOLIO_URL}/work-preview/${data.id}`,
     },
   },
   fields: [
