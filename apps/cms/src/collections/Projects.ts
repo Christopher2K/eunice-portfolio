@@ -30,7 +30,7 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     livePreview: {
-      url: ({ data }) => `${env.PORTFOLIO_URL}/work-preview/${data.id}`,
+      url: ({ data }) => `${env.PORTFOLIO_URL}/work/${data.id}?preview=true`,
     },
   },
   fields: [

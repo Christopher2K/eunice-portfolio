@@ -1,9 +1,7 @@
-import type { Media } from "@payload-types";
 import { Link } from "@tanstack/react-router";
 import { css, cx } from "styled/css";
 import { Box, Flex, styled, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
-import { env } from "@/env";
 import { MediaView } from "@/features/media/components/media-view";
 import type {
   MediaDualPresentation,
@@ -12,6 +10,7 @@ import type {
   MediaPortraitPresentation,
 } from "@/features/media/media.types";
 import { Button, Text } from "@/ui/base";
+import type { SanitizedProject } from "../projects.types";
 import { ProjectLabel } from "./project-label";
 
 export const Project = {
@@ -116,16 +115,10 @@ export const Project = {
 };
 
 export type ProjectViewProps = {
-  name: string;
-  labels: Array<{ name: string; value: string }>;
-  description: string;
-  mainImage: Media;
+  project: SanitizedProject;
 };
 export const ProjectView = ({
-  name,
-  labels,
-  description,
-  mainImage,
+  project: { name, labels, description, mainImage },
 }: ProjectViewProps) => {
   return (
     <VStack
@@ -135,22 +128,24 @@ export const ProjectView = ({
       color="text"
       gap="0"
     >
-      <styled.img
-        className={css({
-          aspectRatio: mainImage.ratio,
-          width: "100%",
-          padding: {
-            base: "5",
-            lg: "10",
-          },
-          paddingBottom: {
-            base: "5",
-            lg: "0",
-          },
-        })}
-        src={`${env.VITE_PAYLOAD_URL}/${mainImage.url}`}
-        alt={mainImage.alt}
-      />
+      {mainImage && (
+        <styled.img
+          className={css({
+            aspectRatio: mainImage.ratio,
+            width: "100%",
+            padding: {
+              base: "5",
+              lg: "10",
+            },
+            paddingBottom: {
+              base: "5",
+              lg: "0",
+            },
+          })}
+          src={mainImage.url}
+          alt={mainImage.alt}
+        />
+      )}
       <Flex
         flexDirection={{
           base: "column",
@@ -212,25 +207,26 @@ export const ProjectView = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <Flex
-            flexDirection={{
-              base: "column",
-              lg: "row",
-            }}
-            as="dl"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            width="full"
-            gap={{
-              base: "5",
-              lg: "10",
-            }}
-          >
-            {labels.map(({ name, value }) => (
-              <ProjectLabel key={name} name={name} value={value} />
-            ))}
-          </Flex>
-
+          {labels && labels.length > 0 && (
+            <Flex
+              flexDirection={{
+                base: "column",
+                lg: "row",
+              }}
+              as="dl"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              width="full"
+              gap={{
+                base: "5",
+                lg: "10",
+              }}
+            >
+              {labels.map(({ name, value }) => (
+                <ProjectLabel key={name} name={name} value={value} />
+              ))}
+            </Flex>
+          )}
           <Box
             width="full"
             className={cx(
@@ -239,12 +235,10 @@ export const ProjectView = ({
               }),
               text({ variant: { base: "small", lg: "bodyStrong" } }),
             )}
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: This is injecting stuff from the CMS
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </VStack>
       </Flex>
-
       <VStack
         width="full"
         justifyContent="flex-start"
@@ -255,28 +249,27 @@ export const ProjectView = ({
           <MediaView key={presentation.id} presentation={presentation} />
         ))}
       </VStack>
-
-      <VStack
-        py="10"
-        px="5"
-        justifyContent="flex-start"
-        alignItems="center"
-        width="full"
-      >
-        <Text variant={{ base: "smallSubhead", lg: "subhead" }}>
-          See it live
-        </Text>
-        <Link
-          href={Project.website}
-          to={Project.website}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button as="span" size={{ base: "large", lg: "xlarge" }} underline>
-            Visit the website now
-          </Button>
-        </Link>
-      </VStack>
+      {/* <VStack */}
+      {/*   py="10" */}
+      {/*   px="5" */}
+      {/*   justifyContent="flex-start" */}
+      {/*   alignItems="center" */}
+      {/*   width="full" */}
+      {/* > */}
+      {/*   <Text variant={{ base: "smallSubhead", lg: "subhead" }}> */}
+      {/*     See it live */}
+      {/*   </Text> */}
+      {/*   <Link */}
+      {/*     href={Project.website} */}
+      {/*     to={Project.website} */}
+      {/*     target="_blank" */}
+      {/*     rel="noopener noreferrer" */}
+      {/*   > */}
+      {/*     <Button as="span" size={{ base: "large", lg: "xlarge" }} underline> */}
+      {/*       Visit the website now */}
+      {/*     </Button> */}
+      {/*   </Link> */}
+      {/* </VStack> */}
     </VStack>
   );
 };

@@ -15,7 +15,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkProjectIdRouteImport } from './routes/work.$projectId'
-import { Route as WorkPreviewProjectIdRouteImport } from './routes/work-preview.$projectId'
 
 const SandboxRoute = SandboxRouteImport.update({
   id: '/sandbox',
@@ -47,18 +46,12 @@ const WorkProjectIdRoute = WorkProjectIdRouteImport.update({
   path: '/work/$projectId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkPreviewProjectIdRoute = WorkPreviewProjectIdRouteImport.update({
-  id: '/work-preview/$projectId',
-  path: '/work-preview/$projectId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/elements': typeof ElementsRoute
   '/sandbox': typeof SandboxRoute
-  '/work-preview/$projectId': typeof WorkPreviewProjectIdRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work': typeof WorkIndexRoute
 }
@@ -67,7 +60,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/elements': typeof ElementsRoute
   '/sandbox': typeof SandboxRoute
-  '/work-preview/$projectId': typeof WorkPreviewProjectIdRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work': typeof WorkIndexRoute
 }
@@ -77,7 +69,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/elements': typeof ElementsRoute
   '/sandbox': typeof SandboxRoute
-  '/work-preview/$projectId': typeof WorkPreviewProjectIdRoute
   '/work/$projectId': typeof WorkProjectIdRoute
   '/work/': typeof WorkIndexRoute
 }
@@ -88,25 +79,16 @@ export interface FileRouteTypes {
     | '/about'
     | '/elements'
     | '/sandbox'
-    | '/work-preview/$projectId'
     | '/work/$projectId'
     | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/elements'
-    | '/sandbox'
-    | '/work-preview/$projectId'
-    | '/work/$projectId'
-    | '/work'
+  to: '/' | '/about' | '/elements' | '/sandbox' | '/work/$projectId' | '/work'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/elements'
     | '/sandbox'
-    | '/work-preview/$projectId'
     | '/work/$projectId'
     | '/work/'
   fileRoutesById: FileRoutesById
@@ -116,7 +98,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ElementsRoute: typeof ElementsRoute
   SandboxRoute: typeof SandboxRoute
-  WorkPreviewProjectIdRoute: typeof WorkPreviewProjectIdRoute
   WorkProjectIdRoute: typeof WorkProjectIdRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
@@ -165,13 +146,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkProjectIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work-preview/$projectId': {
-      id: '/work-preview/$projectId'
-      path: '/work-preview/$projectId'
-      fullPath: '/work-preview/$projectId'
-      preLoaderRoute: typeof WorkPreviewProjectIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -180,7 +154,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ElementsRoute: ElementsRoute,
   SandboxRoute: SandboxRoute,
-  WorkPreviewProjectIdRoute: WorkPreviewProjectIdRoute,
   WorkProjectIdRoute: WorkProjectIdRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
