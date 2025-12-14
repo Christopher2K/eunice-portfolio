@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { css } from "styled/css";
+import { css, cx } from "styled/css";
 import { Box, Flex, styled, VStack } from "styled/jsx";
+import { text } from "styled/recipes";
 import { MediaView } from "@/features/media/components/media-view";
 import type {
   MediaDualPresentation,
@@ -10,6 +11,7 @@ import type {
   MediaPortraitPresentation,
 } from "@/features/media/media.types";
 import { Button, Text } from "@/ui/base";
+import { ProjectLabel } from "./project-label";
 
 export const Project = {
   mainImage: "https://picsum.photos/seed/eunice/1920/1080",
@@ -126,12 +128,17 @@ Sed magna elit, gravida at mollis tempus, ullamcorper et lectus. Phasellus feugi
   ],
 };
 
-export const ProjectView = () => {
-  const projectDefinitionList = [
-    { label: "Client", value: Project.client },
-    { label: "Agency", value: Project.agency },
-    { label: "Website", value: Project.website },
-  ];
+export type ProjectViewProps = {
+  name: string;
+  labels: Array<{ name: string; value: string }>;
+  description: string;
+};
+export const ProjectView = ({
+  name,
+  labels,
+  description,
+}: ProjectViewProps) => {
+  console.log(description);
 
   return (
     <VStack
@@ -196,7 +203,7 @@ export const ProjectView = () => {
               lg: "heading1",
             }}
           >
-            {Project.title}
+            {name}
           </Text>
         </Box>
 
@@ -232,38 +239,22 @@ export const ProjectView = () => {
               lg: "10",
             }}
           >
-            {projectDefinitionList.map(({ label, value }) => (
-              <VStack
-                key={label}
-                gap="1"
-                width={{
-                  base: "full",
-                  lg: "auto",
-                }}
-                justifyContent="flex-start"
-                alignItems="flex-start"
-                flexBasis={{
-                  lg: "0",
-                }}
-                flexGrow={{
-                  lg: "1",
-                }}
-              >
-                <Text as="dt" variant={{ base: "smallSubhead", lg: "subhead" }}>
-                  {label}
-                </Text>
-                <Text as="dd" variant={{ base: "small", lg: "body" }}>
-                  {value}
-                </Text>
-              </VStack>
+            {labels.map(({ name, value }) => (
+              <ProjectLabel key={name} name={name} value={value} />
             ))}
           </Flex>
 
-          <Box width="full">
-            <Text as="p" variant={{ base: "small", lg: "body" }}>
-              {Project.description}
-            </Text>
-          </Box>
+          <Box
+            width="full"
+            className={cx(
+              css({
+                whiteSpace: "pre-wrap",
+              }),
+              text({ variant: { base: "small", lg: "bodyStrong" } }),
+            )}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: This is injecting stuff from the CMS
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </VStack>
       </Flex>
 

@@ -184,9 +184,7 @@ export interface Project {
   id: number;
   _order?: string | null;
   name: string;
-  client: string;
-  agency: string;
-  website?: string | null;
+  labels?: LabelBlock[] | null;
   description?: {
     root: {
       type: string;
@@ -207,6 +205,17 @@ export interface Project {
   mediaContent: (number | MediaDisposition)[];
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LabelBlock".
+ */
+export interface LabelBlock {
+  labelName: string;
+  labelValue: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'Label';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -363,15 +372,27 @@ export interface ProjectTypesSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   _order?: T;
   name?: T;
-  client?: T;
-  agency?: T;
-  website?: T;
+  labels?:
+    | T
+    | {
+        Label?: T | LabelBlockSelect<T>;
+      };
   description?: T;
   projectType?: T;
   mainImage?: T;
   mediaContent?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LabelBlock_select".
+ */
+export interface LabelBlockSelect<T extends boolean = true> {
+  labelName?: T;
+  labelValue?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

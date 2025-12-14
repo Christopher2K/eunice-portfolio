@@ -1,5 +1,22 @@
-import type { CollectionConfig } from "payload";
+import type { Block, CollectionConfig } from "payload";
 import { env } from "@/env/server";
+
+const LabelBlock: Block = {
+  slug: "Label",
+  interfaceName: "LabelBlock",
+  fields: [
+    {
+      name: "labelName",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "labelValue",
+      type: "text",
+      required: true,
+    },
+  ],
+};
 
 export const Projects: CollectionConfig = {
   slug: "projects",
@@ -23,18 +40,9 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: "client",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "agency",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "website",
-      type: "text",
+      name: "labels",
+      type: "blocks",
+      blocks: [LabelBlock],
     },
     {
       name: "description",
