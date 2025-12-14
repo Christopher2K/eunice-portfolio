@@ -1,4 +1,3 @@
-import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
@@ -6,9 +5,7 @@ import {
   Scripts,
   useRouter,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { PropsWithChildren } from "react";
-import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import { Footer, Navigation } from "@/ui/elements";
 import indexCss from "@/ui/index.css?url";
 
