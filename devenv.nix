@@ -47,6 +47,9 @@
     accessKey = config.env.S3_ACCESS_KEY_ID;
     secretKey = config.env.S3_ACCESS_SECRET_KEY;
     buckets = [ config.env.S3_BUCKET ];
+    afterStart = ''
+      mc anonymous set download local/${config.env.S3_BUCKET}
+    '';
   };
 
   # https://devenv.sh/scripts/
