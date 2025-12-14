@@ -24,7 +24,7 @@
     "paths": {
       "styled/*": ["./styled-system/*"],
       "@/*": ["./src/*"],
-      "@payload-types": ["../../../shared/payload-types.ts"]
+      "@payload-types": ["../../shared/payload-types.ts"]
     }
   }
 }

@@ -10,7 +10,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@payloadcms/live-preview": "3.64.0",
+    "@payloadcms/live-preview-react": "3.64.0",
+    "@payloadcms/sdk": "3.64.0",
     "@t3-oss/env-core": "~0.13.8",
     "@tanstack/nitro-v2-vite-plugin": "~1.132.40",
     "@tanstack/react-devtools": "^0.7.0",
