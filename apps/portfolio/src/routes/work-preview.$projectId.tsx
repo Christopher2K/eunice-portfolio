@@ -47,6 +47,7 @@ function RouteComponent() {
           })) ?? []
         }
         description={convertLexicalToHTML({ data: data.description })}
+        mainImage={data.mainImage}
       />
     </>
   );

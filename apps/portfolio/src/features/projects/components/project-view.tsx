@@ -1,33 +1,20 @@
+import type { Media } from "@payload-types";
 import { Link } from "@tanstack/react-router";
 import { css, cx } from "styled/css";
 import { Box, Flex, styled, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
+import { env } from "@/env";
 import { MediaView } from "@/features/media/components/media-view";
 import type {
   MediaDualPresentation,
   MediaFullWidthPresentation,
   MediaGridPresentation,
-  MediaLandscapePresentation,
   MediaPortraitPresentation,
 } from "@/features/media/media.types";
 import { Button, Text } from "@/ui/base";
 import { ProjectLabel } from "./project-label";
 
 export const Project = {
-  mainImage: "https://picsum.photos/seed/eunice/1920/1080",
-  mainImageAlt: "Eunice",
-  title: "The National Ballet of Canada",
-
-  client: "The National Ballet of Canada",
-  agency: "Bruce Mau Design",
-  website: "https://www.google.ca",
-  description: `
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus eu lectus in blandit. 
-Praesent finibus turpis ac fringilla aliquam. Sed ut lobortis tellus, tempus mollis mi. Donec quis imperdiet ex. Ut sed viverra ipsum. 
-Cras placerat nibh ut dolor rhoncus, nec scelerisque dui iaculis. Cras interdum diam arcu, eu imperdiet justo ultricies sit amet. 
-
-Sed magna elit, gravida at mollis tempus, ullamcorper et lectus. Phasellus feugiat purus a nisl aliquam, a porta leo commodo. Morbi volutpat mauris sed sem imperdiet, ac hendrerit leo porttitor. Nunc aliquam ipsum suscipit felis aliquam, quis tincidunt nisl consectetur. Etiam malesuada purus rhoncus dignissim ultricies. Proin ac ultricies eros, sit amet commodo nibh.
-  `,
   mediaPresentations: [
     {
       id: "mp_fw_7k3n9x2m",
@@ -132,14 +119,14 @@ export type ProjectViewProps = {
   name: string;
   labels: Array<{ name: string; value: string }>;
   description: string;
+  mainImage: Media;
 };
 export const ProjectView = ({
   name,
   labels,
   description,
+  mainImage,
 }: ProjectViewProps) => {
-  console.log(description);
-
   return (
     <VStack
       width="full"
@@ -150,7 +137,7 @@ export const ProjectView = ({
     >
       <styled.img
         className={css({
-          aspectRatio: "16/9",
+          aspectRatio: mainImage.ratio,
           width: "100%",
           padding: {
             base: "5",
@@ -161,8 +148,8 @@ export const ProjectView = ({
             lg: "0",
           },
         })}
-        src={Project.mainImage}
-        alt={Project.mainImageAlt}
+        src={`${env.VITE_PAYLOAD_URL}/${mainImage.url}`}
+        alt={mainImage.alt}
       />
       <Flex
         flexDirection={{
