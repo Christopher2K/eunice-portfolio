@@ -2,6 +2,9 @@ import type { CollectionConfig } from "payload";
 
 export const Media: CollectionConfig = {
   slug: "media",
+  admin: {
+    useAsTitle: "name",
+  },
   access: {
     create: ({ req }) => {
       return Boolean(req.user);
@@ -11,6 +14,11 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   fields: [
+    {
+      name: "name",
+      type: "text",
+      required: true,
+    },
     {
       name: "ratio",
       type: "select",

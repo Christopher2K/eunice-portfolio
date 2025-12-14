@@ -1,4 +1,7 @@
-import type { SanitizedMedia } from "../media/media.types";
+import type {
+  SanitizedMedia,
+  SanitizedMediaContent,
+} from "../media/media.types";
 
 export type SanitizedProject = {
   __tag: "SanitizedProject";
@@ -7,6 +10,7 @@ export type SanitizedProject = {
   description: string;
   labels?: Array<{ name: string; value: string }>;
   mainImage?: SanitizedMedia;
+  medium?: Array<SanitizedMediaContent>;
 };
 
 export const isSatitizedProject = (

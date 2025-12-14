@@ -18,6 +18,34 @@ const LabelBlock: Block = {
   ],
 };
 
+const MediaContentBlock: Block = {
+  slug: "MediaContent",
+  interfaceName: "MediaContentBlock",
+  fields: [
+    {
+      name: "type",
+      type: "select",
+      required: true,
+      options: [
+        { label: "Full width", value: "fullWidth" },
+        { label: "Landscape", value: "landscape" },
+        { label: "Dual", value: "dual" },
+        { label: "Grid", value: "grid" },
+      ],
+    },
+    {
+      name: "mediaList",
+      label: "Media List",
+      type: "relationship",
+      relationTo: "media",
+      hasMany: true,
+      admin: {
+        isSortable: true,
+      },
+    },
+  ],
+};
+
 export const Projects: CollectionConfig = {
   slug: "projects",
   orderable: true,
@@ -63,12 +91,9 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: "mediaContent",
-      label: "Media Content",
-      relationTo: "mediaDispositions",
-      type: "relationship",
-      hasMany: true,
-      required: true,
+      name: "medium",
+      type: "blocks",
+      blocks: [MediaContentBlock],
     },
   ],
 };

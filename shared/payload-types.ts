@@ -151,6 +151,7 @@ export interface User {
  */
 export interface Media {
   id: number;
+  name: string;
   ratio: '1/1' | '2/3' | '3/4' | '4/3' | '16/9';
   caption?: string | null;
   alt: string;
@@ -202,7 +203,7 @@ export interface Project {
   } | null;
   projectType: number | ProjectType;
   mainImage: number | Media;
-  mediaContent: (number | MediaDisposition)[];
+  medium?: MediaContentBlock[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -216,6 +217,17 @@ export interface LabelBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'Label';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaContentBlock".
+ */
+export interface MediaContentBlock {
+  type: 'fullWidth' | 'landscape' | 'dual' | 'grid';
+  mediaList?: (number | Media)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'MediaContent';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -341,6 +353,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  name?: T;
   ratio?: T;
   caption?: T;
   alt?: T;
@@ -380,7 +393,11 @@ export interface ProjectsSelect<T extends boolean = true> {
   description?: T;
   projectType?: T;
   mainImage?: T;
-  mediaContent?: T;
+  medium?:
+    | T
+    | {
+        MediaContent?: T | MediaContentBlockSelect<T>;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -391,6 +408,16 @@ export interface ProjectsSelect<T extends boolean = true> {
 export interface LabelBlockSelect<T extends boolean = true> {
   labelName?: T;
   labelValue?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaContentBlock_select".
+ */
+export interface MediaContentBlockSelect<T extends boolean = true> {
+  type?: T;
+  mediaList?: T;
   id?: T;
   blockName?: T;
 }

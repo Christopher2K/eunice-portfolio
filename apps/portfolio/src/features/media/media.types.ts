@@ -1,5 +1,10 @@
-import type { Media } from "@payload-types";
+import type { Media, MediaContentBlock } from "@payload-types";
 
 export type SanitizedMedia = Omit<Media, "url"> & {
   url: string;
+};
+
+export type SanitizedMediaContent = {
+  type: MediaContentBlock["type"];
+  mediaList: Array<SanitizedMedia>;
 };
