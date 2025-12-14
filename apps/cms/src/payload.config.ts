@@ -24,7 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, ProjectTypes, Projects, MediaDispositions],
-  cors: "*",
+  cors: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   csrf: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
