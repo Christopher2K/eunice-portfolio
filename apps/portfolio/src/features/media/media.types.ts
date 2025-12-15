@@ -5,6 +5,8 @@ export type SanitizedMedia = Omit<Media, "url"> & {
 };
 
 export type SanitizedMediaContent = {
+  name?: string;
+  showCaptions?: boolean;
   type: MediaContentBlock["type"];
   mediaList: Array<SanitizedMedia>;
 };

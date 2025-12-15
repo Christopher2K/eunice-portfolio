@@ -1,50 +1,7 @@
-import type { Block, CollectionConfig } from "payload";
+import type { CollectionConfig } from "payload";
 import { env } from "@/env/server";
-
-const LabelBlock: Block = {
-  slug: "Label",
-  interfaceName: "LabelBlock",
-  fields: [
-    {
-      name: "labelName",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "labelValue",
-      type: "text",
-      required: true,
-    },
-  ],
-};
-
-const MediaContentBlock: Block = {
-  slug: "MediaContent",
-  interfaceName: "MediaContentBlock",
-  fields: [
-    {
-      name: "type",
-      type: "select",
-      required: true,
-      options: [
-        { label: "Full width", value: "fullWidth" },
-        { label: "Landscape", value: "landscape" },
-        { label: "Dual", value: "dual" },
-        { label: "Grid", value: "grid" },
-      ],
-    },
-    {
-      name: "mediaList",
-      label: "Media List",
-      type: "relationship",
-      relationTo: "media",
-      hasMany: true,
-      admin: {
-        isSortable: true,
-      },
-    },
-  ],
-};
+import { LabelBlock } from "../block/LabelBlock";
+import { MediaContentBlock } from "../block/MediaContentBlock";
 
 export const Projects: CollectionConfig = {
   slug: "projects",

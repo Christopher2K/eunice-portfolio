@@ -1,14 +1,14 @@
-import type { CollectionConfig } from "payload";
+import type { Block } from "payload";
 
-export const MediaDispositions: CollectionConfig = {
-  access: {
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
-    read: () => true,
-  },
-  slug: "mediaDispositions",
+export const MediaContentBlock: Block = {
+  slug: "MediaContent",
+  interfaceName: "MediaContentBlock",
   fields: [
+    {
+      name: "name",
+      type: "text",
+      label: "Name",
+    },
     {
       name: "type",
       type: "select",
@@ -26,7 +26,6 @@ export const MediaDispositions: CollectionConfig = {
       type: "relationship",
       relationTo: "media",
       hasMany: true,
-      required: true,
       admin: {
         isSortable: true,
       },

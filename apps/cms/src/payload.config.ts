@@ -6,7 +6,6 @@ import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { Media } from "./collections/Media";
-import { MediaDispositions } from "./collections/MediaDispositions";
 import { Projects } from "./collections/Projects";
 import { ProjectTypes } from "./collections/ProjectTypes";
 import { Users } from "./collections/Users";
@@ -23,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, ProjectTypes, Projects, MediaDispositions],
+  collections: [Users, Media, ProjectTypes, Projects],
   cors: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   csrf: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   editor: lexicalEditor(),

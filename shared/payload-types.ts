@@ -71,7 +71,6 @@ export interface Config {
     media: Media;
     projectTypes: ProjectType;
     projects: Project;
-    mediaDispositions: MediaDisposition;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,7 +82,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     projectTypes: ProjectTypesSelect<false> | ProjectTypesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
-    mediaDispositions: MediaDispositionsSelect<false> | MediaDispositionsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -223,22 +221,12 @@ export interface LabelBlock {
  * via the `definition` "MediaContentBlock".
  */
 export interface MediaContentBlock {
+  name?: string | null;
   type: 'fullWidth' | 'landscape' | 'dual' | 'grid';
   mediaList?: (number | Media)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'MediaContent';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaDispositions".
- */
-export interface MediaDisposition {
-  id: number;
-  type: 'fullWidth' | 'landscape' | 'dual' | 'grid';
-  mediaList: (number | Media)[];
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -279,10 +267,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
-      } | null)
-    | ({
-        relationTo: 'mediaDispositions';
-        value: number | MediaDisposition;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -416,20 +400,11 @@ export interface LabelBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaContentBlock_select".
  */
 export interface MediaContentBlockSelect<T extends boolean = true> {
+  name?: T;
   type?: T;
   mediaList?: T;
   id?: T;
   blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaDispositions_select".
- */
-export interface MediaDispositionsSelect<T extends boolean = true> {
-  type?: T;
-  mediaList?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -115,31 +115,45 @@ const mediaDualContentSpec: MediaContentRenderSpec = {
 const mediaGridContentSpec: MediaContentRenderSpec = {
   precidate: (content) => content.type === "grid",
   render: ({ content }) => (
-    <Box
-      display="grid"
-      gridTemplateColumns={{
-        base: "1fr",
-        lg: "1fr 1fr 1fr",
-      }}
-      gap="10"
-      width="full"
-    >
-      {content.mediaList.map((media) => (
-        <Fragment>
-          <VStack gap="5" flexGrow={1} flexBasis={0}>
-            <styled.img
-              className={css({
-                width: "100%",
-                aspectRatio: media.ratio,
-              })}
-              src={media.url}
-              alt={media.alt}
-            />
-            <Caption caption={media.caption} />
-          </VStack>
-        </Fragment>
-      ))}
-    </Box>
+    <VStack width="full" gap="10">
+      {content.name && (
+        <Text
+          as="h3"
+          variant="heading3"
+          className={css({
+            textAlign: "left",
+            width: "full",
+          })}
+        >
+          {content.name}
+        </Text>
+      )}
+      <Box
+        display="grid"
+        gridTemplateColumns={{
+          base: "1fr",
+          lg: "1fr 1fr 1fr",
+        }}
+        gap="10"
+        width="full"
+      >
+        {content.mediaList.map((media) => (
+          <Fragment>
+            <VStack gap="5" flexGrow={1} flexBasis={0}>
+              <styled.img
+                className={css({
+                  width: "100%",
+                  aspectRatio: media.ratio,
+                })}
+                src={media.url}
+                alt={media.alt}
+              />
+              <Caption caption={media.caption} />
+            </VStack>
+          </Fragment>
+        ))}
+      </Box>
+    </VStack>
   ),
 };
 
