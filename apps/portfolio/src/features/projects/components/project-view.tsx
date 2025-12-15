@@ -131,15 +131,30 @@ export const ProjectView = ({
           />
         </VStack>
       </Flex>
-      <VStack
-        width="full"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        px={{
-          base: "5",
-          lg: "10",
-        }}
-      ></VStack>
+      {medium && medium.length > 0 && (
+        <VStack
+          width="full"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          px={{
+            base: "5",
+            lg: "10",
+          }}
+        >
+          {medium.map((content, index) => (
+            <Box
+              key={index}
+              width="full"
+              py={{
+                base: "5",
+                lg: "20",
+              }}
+            >
+              <MediaView content={content} />
+            </Box>
+          ))}
+        </VStack>
+      )}
     </VStack>
   );
 };

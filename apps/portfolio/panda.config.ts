@@ -203,6 +203,12 @@ export default defineConfig({
         button: buttonRecipe,
       },
       tokens: {
+        sizes: {
+          landscape: {
+            value: "1410px",
+            type: "string",
+          },
+        },
         fonts: {
           lausanne: { value: "var(--font-lausanne), monospace" },
           space: { value: "var(--font-space-mono), sans-serif" },

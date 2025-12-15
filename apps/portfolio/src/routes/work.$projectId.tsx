@@ -21,7 +21,8 @@ type WorkSearchParams = {
 export const Route = createFileRoute("/work/$projectId")({
   component: RouteComponent,
   loader: async ({ params }) => {
-    const project = getProjectById(params.projectId);
+    const project = await getProjectById(params.projectId);
+    console.log(project);
     return project;
   },
   validateSearch: (searchParams: Record<string, unknown>): WorkSearchParams => {
