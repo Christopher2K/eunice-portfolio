@@ -4,8 +4,9 @@ import { sanitizeMedia } from "./sanitize-media";
 
 export const sanitizeMediaContent = (
   mediaContent: MediaContentBlock | number,
-): SanitizedMediaContent | undefined => {
-  if (typeof mediaContent === "number") return undefined;
+): SanitizedMediaContent => {
+  if (typeof mediaContent === "number")
+    throw new Error("MediaContent is missing");
 
   const mediaList =
     mediaContent.mediaList?.reduce((finalList, media) => {
@@ -19,6 +20,7 @@ export const sanitizeMediaContent = (
     }, [] as SanitizedMedia[]) ?? [];
 
   return {
+    __tag: "SanitizedMediaContent",
     type: mediaContent.type,
     name: mediaContent.name ?? undefined,
     showCaptions: mediaContent.type !== "grid",

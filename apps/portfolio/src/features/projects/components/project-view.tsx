@@ -1,16 +1,16 @@
 import { css, cx } from "styled/css";
 import { Box, Flex, styled, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
-import { MediaView } from "@/features/media/components/media-view";
 import { Text } from "@/ui/base";
 import type { SanitizedProject } from "../projects.types";
+import { ProjectContent } from "./project-content";
 import { ProjectLabel } from "./project-label";
 
 export type ProjectViewProps = {
   project: SanitizedProject;
 };
 export const ProjectView = ({
-  project: { name, labels, description, mainImage, medium },
+  project: { name, labels, description, mainImage, content },
 }: ProjectViewProps) => {
   return (
     <VStack
@@ -127,11 +127,12 @@ export const ProjectView = ({
               }),
               text({ variant: { base: "small", lg: "bodyStrong" } }),
             )}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Intentional
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </VStack>
       </Flex>
-      {medium && medium.length > 0 && (
+      {content && content.length > 0 && (
         <VStack
           width="full"
           justifyContent="flex-start"
@@ -141,17 +142,12 @@ export const ProjectView = ({
             lg: "10",
           }}
         >
-          {medium.map((content, index) => (
-            <Box
+          {content.map((item, index) => (
+            <ProjectContent
+              // biome-ignore lint/suspicious/noArrayIndexKey: Not dynamic anyway
               key={index}
-              width="full"
-              py={{
-                base: "5",
-                lg: "20",
-              }}
-            >
-              <MediaView content={content} />
-            </Box>
+              content={item}
+            />
           ))}
         </VStack>
       )}

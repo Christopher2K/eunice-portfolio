@@ -1,3 +1,4 @@
+import type { LinkContentBlock, QuoteContentBlock } from "@payload-types";
 import type {
   SanitizedMedia,
   SanitizedMediaContent,
@@ -14,6 +15,26 @@ export type LabelLink = {
   text: string;
 };
 
+export type SanitizedQuoteContent = {
+  __tag: "SanitizedQuoteContent";
+  author: string;
+  text: string;
+  layout: QuoteContentBlock["layout"];
+};
+
+export type SanitizedLinkContent = {
+  __tag: "SanitizedLinkContent";
+  title: string;
+  name: string;
+  url: string;
+  layout: LinkContentBlock["layout"];
+};
+
+export type SanitizedContent =
+  | SanitizedMediaContent
+  | SanitizedQuoteContent
+  | SanitizedLinkContent;
+
 export type SanitizedProject = {
   __tag: "SanitizedProject";
   id: number;
@@ -21,7 +42,7 @@ export type SanitizedProject = {
   description: string;
   labels?: Array<{ name: string; value: LabelText | LabelLink }>;
   mainImage: SanitizedMedia;
-  medium?: Array<SanitizedMediaContent>;
+  content: Array<SanitizedContent>;
   projectType: string;
 };
 
