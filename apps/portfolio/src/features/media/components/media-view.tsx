@@ -119,7 +119,10 @@ const mediaGridContentSpec: MediaContentRenderSpec = {
       {content.name && (
         <Text
           as="h3"
-          variant="heading3"
+          variant={{
+            base: "heading4",
+            lg: "heading3",
+          }}
           className={css({
             textAlign: "left",
             width: "full",
