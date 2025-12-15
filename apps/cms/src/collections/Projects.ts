@@ -1,7 +1,30 @@
-import type { CollectionConfig } from "payload";
+import type { Media, Project } from "@payload-types";
+import type { CollectionConfig, JSONField } from "payload";
+import { LinkContentBlock } from "@/block/LinkContentBlock";
+import { QuoteContentBlock } from "@/block/QuoteContentBlock";
 import { env } from "@/env/server";
 import { LabelBlock } from "../block/LabelBlock";
 import { MediaContentBlock } from "../block/MediaContentBlock";
+
+const SiblingProjectJSONSchema: JSONField["typescriptSchema"] = [
+  () => ({
+    oneOf: [
+      { type: "null" },
+      {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          id: { type: "number", required: true },
+          name: { type: "string", required: true },
+          mainImage: {
+            $ref: "#/definitions/media",
+            required: true,
+          },
+        },
+      },
+    ],
+  }),
+];
 
 export const Projects: CollectionConfig = {
   slug: "projects",
@@ -48,9 +71,91 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: "medium",
+      name: "content",
       type: "blocks",
-      blocks: [MediaContentBlock],
+      blocks: [MediaContentBlock, QuoteContentBlock, LinkContentBlock],
+    },
+    {
+      name: "previousProject",
+      type: "json",
+      virtual: true,
+      hidden: true,
+      typescriptSchema: SiblingProjectJSONSchema,
+      hooks: {
+        afterRead: [
+          async ({ data, req: { payload } }) => {
+            const result = await payload.find({
+              collection: "projects",
+              where: {
+                _order: {
+                  less_than: (data as Project)._order,
+                },
+              },
+              sort: "_order",
+              limit: 1,
+              pagination: false,
+              depth: 1,
+              select: {
+                id: true,
+                name: true,
+                mainImage: true,
+              },
+            });
+
+            const nextProject = result.docs[0] as Project | undefined;
+
+            if (nextProject) {
+              return {
+                id: nextProject.id,
+                name: nextProject.name,
+                mainImage: nextProject.mainImage as Media,
+              };
+            }
+            return null;
+          },
+        ],
+      },
+    },
+    {
+      name: "nextProject",
+      type: "json",
+      virtual: true,
+      hidden: true,
+      typescriptSchema: SiblingProjectJSONSchema,
+      hooks: {
+        afterRead: [
+          async ({ data, req: { payload } }) => {
+            const result = await payload.find({
+              collection: "projects",
+              where: {
+                _order: {
+                  greater_than: (data as Project)._order,
+                },
+              },
+              sort: "_order",
+              limit: 1,
+              pagination: false,
+              depth: 1,
+              select: {
+                id: true,
+                name: true,
+                mainImage: true,
+              },
+            });
+
+            const nextProject = result.docs[0] as Project | undefined;
+
+            if (nextProject) {
+              return {
+                id: nextProject.id,
+                name: nextProject.name,
+                mainImage: nextProject.mainImage as Media,
+              };
+            }
+            return null;
+          },
+        ],
+      },
     },
   ],
 };

@@ -201,7 +201,17 @@ export interface Project {
   } | null;
   projectType: number | ProjectType;
   mainImage: number | Media;
-  medium?: MediaContentBlock[] | null;
+  content?: (MediaContentBlock | QuoteContentBlock | LinkContentBlock)[] | null;
+  previousProject?: null | {
+    id?: number;
+    name?: string;
+    mainImage?: Media1;
+  };
+  nextProject?: null | {
+    id?: number;
+    name?: string;
+    mainImage?: Media2;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -248,6 +258,81 @@ export interface MediaContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'MediaContent';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteContentBlock".
+ */
+export interface QuoteContentBlock {
+  author: string;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  layout: 'small' | 'medium';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'QuoteContent';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkContentBlock".
+ */
+export interface LinkContentBlock {
+  title: string;
+  name: string;
+  url: string;
+  layout: 'left' | 'right' | 'center';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'LinkContent';
+}
+export interface Media1 {
+  id: number;
+  name: string;
+  ratio: '1/1' | '2/3' | '3/4' | '4/3' | '16/9';
+  caption?: string | null;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+export interface Media2 {
+  id: number;
+  name: string;
+  ratio: '1/1' | '2/3' | '3/4' | '4/3' | '16/9';
+  caption?: string | null;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -398,11 +483,15 @@ export interface ProjectsSelect<T extends boolean = true> {
   description?: T;
   projectType?: T;
   mainImage?: T;
-  medium?:
+  content?:
     | T
     | {
         MediaContent?: T | MediaContentBlockSelect<T>;
+        QuoteContent?: T | QuoteContentBlockSelect<T>;
+        LinkContent?: T | LinkContentBlockSelect<T>;
       };
+  previousProject?: T;
+  nextProject?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -448,6 +537,29 @@ export interface MediaContentBlockSelect<T extends boolean = true> {
   name?: T;
   type?: T;
   mediaList?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteContentBlock_select".
+ */
+export interface QuoteContentBlockSelect<T extends boolean = true> {
+  author?: T;
+  text?: T;
+  layout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkContentBlock_select".
+ */
+export interface LinkContentBlockSelect<T extends boolean = true> {
+  title?: T;
+  name?: T;
+  url?: T;
+  layout?: T;
   id?: T;
   blockName?: T;
 }
