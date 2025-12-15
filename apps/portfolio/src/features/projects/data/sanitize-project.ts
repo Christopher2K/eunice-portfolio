@@ -9,7 +9,12 @@ import type { SanitizedProject } from "../projects.types";
 export const sanitizeProject = (project: Project): SanitizedProject => {
   return {
     __tag: "SanitizedProject",
-    ...project,
+    id: project.id,
+    name: project.name,
+    projectType:
+      typeof project.projectType === "object"
+        ? project.projectType.name
+        : "Project",
     labels: project.labels?.map((label) => {
       const value = label.labelValue[0];
 

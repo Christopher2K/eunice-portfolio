@@ -4,17 +4,22 @@ import { styled, VStack } from "styled/jsx";
 import { Text } from "@/ui/base";
 
 type ProjectTileProps = {
-  // id: string;
+  id: string;
   thumbnail: string;
   name: string;
   type: string;
 };
 
-export const ProjectTile = ({ thumbnail, name, type }: ProjectTileProps) => {
+export const ProjectTile = ({
+  id,
+  thumbnail,
+  name,
+  type,
+}: ProjectTileProps) => {
   return (
     <Link
       to="/work/$projectId"
-      params={{ projectId: "1" }}
+      params={{ projectId: id }}
       className={css({ width: "100%", display: "block", color: "text" })}
     >
       <VStack justifyContent="flex-start" alignItems="flex-start" width="full">

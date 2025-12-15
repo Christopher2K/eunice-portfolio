@@ -20,8 +20,9 @@ export type SanitizedProject = {
   name: string;
   description: string;
   labels?: Array<{ name: string; value: LabelText | LabelLink }>;
-  mainImage?: SanitizedMedia;
+  mainImage: SanitizedMedia;
   medium?: Array<SanitizedMediaContent>;
+  projectType: string;
 };
 
 export const isSatitizedProject = (

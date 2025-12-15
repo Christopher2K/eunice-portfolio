@@ -1,30 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Box } from "styled/jsx";
 import { ProjectTile } from "@/features/projects/components/project-tile";
-
-const Frames = [
-  {
-    name: "Wrensilva",
-    type: "Website",
-    image: "https://picsum.photos/seed/eunice1/1920/1080",
-  },
-  {
-    name: "San Diego Museum of Art",
-    type: "Branding",
-    image: "https://picsum.photos/seed/eunice2/1920/1080",
-  },
-  {
-    name: "Chicago MOMA",
-    type: "Website",
-    image: "https://picsum.photos/seed/eunice3/1920/1080",
-  },
-];
+import { getAllProjects } from "@/features/projects/data/get-projects";
 
 export const Route = createFileRoute("/work/")({
   component: RouteComponent,
+  loader: () => getAllProjects(),
 });
 
 function RouteComponent() {
+  const projects = Route.useLoaderData();
+
   return (
     <Box
       display="grid"
@@ -46,12 +32,13 @@ function RouteComponent() {
         lg: "160px",
       }}
     >
-      {Frames.map((frame) => (
+      {projects.map((project) => (
         <ProjectTile
-          key={frame.name}
-          thumbnail={frame.image}
-          name={frame.name}
-          type={frame.type}
+          key={project.id}
+          id={project.id.toString()}
+          thumbnail={project.mainImage.url}
+          name={project.name}
+          type={project.projectType}
         />
       ))}
     </Box>
