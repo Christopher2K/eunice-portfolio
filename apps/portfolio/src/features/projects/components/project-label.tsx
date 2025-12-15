@@ -1,17 +1,8 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { css } from "styled/css";
 import { VStack } from "styled/jsx";
 import { Text } from "@/ui/base";
 import type { LabelLink, LabelText } from "../projects.types";
-
-const isUrl = (value: unknown): boolean => {
-  try {
-    new URL(value as string);
-    return true;
-  } catch (_) {
-    return false;
-  }
-};
 
 type ProjectLabelProps = {
   name: string;
