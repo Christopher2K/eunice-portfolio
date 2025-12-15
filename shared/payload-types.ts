@@ -211,10 +211,31 @@ export interface Project {
  */
 export interface LabelBlock {
   labelName: string;
-  labelValue: string;
+  labelValue: (TextBlock | LinkBlock)[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'Label';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock".
+ */
+export interface TextBlock {
+  text: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'Text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBlock".
+ */
+export interface LinkBlock {
+  name: string;
+  url: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'Link';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -391,7 +412,31 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface LabelBlockSelect<T extends boolean = true> {
   labelName?: T;
-  labelValue?: T;
+  labelValue?:
+    | T
+    | {
+        Text?: T | TextBlockSelect<T>;
+        Link?: T | LinkBlockSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock_select".
+ */
+export interface TextBlockSelect<T extends boolean = true> {
+  text?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LinkBlock_select".
+ */
+export interface LinkBlockSelect<T extends boolean = true> {
+  name?: T;
+  url?: T;
   id?: T;
   blockName?: T;
 }

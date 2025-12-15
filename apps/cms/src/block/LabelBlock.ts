@@ -1,4 +1,6 @@
 import type { Block } from "payload";
+import { LinkBlock } from "./LinkBlock";
+import { TextBlock } from "./TextBlock";
 
 export const LabelBlock: Block = {
   slug: "Label",
@@ -11,7 +13,10 @@ export const LabelBlock: Block = {
     },
     {
       name: "labelValue",
-      type: "text",
+      type: "blocks",
+      minRows: 1,
+      maxRows: 1,
+      blocks: [TextBlock, LinkBlock],
       required: true,
     },
   ],

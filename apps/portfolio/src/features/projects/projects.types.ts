@@ -3,12 +3,23 @@ import type {
   SanitizedMediaContent,
 } from "../media/media.types";
 
+export type LabelText = {
+  type: "text";
+  text: string;
+};
+
+export type LabelLink = {
+  type: "link";
+  url: string;
+  text: string;
+};
+
 export type SanitizedProject = {
   __tag: "SanitizedProject";
   id: number;
   name: string;
   description: string;
-  labels?: Array<{ name: string; value: string }>;
+  labels?: Array<{ name: string; value: LabelText | LabelLink }>;
   mainImage?: SanitizedMedia;
   medium?: Array<SanitizedMediaContent>;
 };

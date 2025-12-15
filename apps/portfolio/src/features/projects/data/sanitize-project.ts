@@ -10,10 +10,24 @@ export const sanitizeProject = (project: Project): SanitizedProject => {
   return {
     __tag: "SanitizedProject",
     ...project,
-    labels: project.labels?.map((label) => ({
-      name: label.labelName,
-      value: label.labelValue,
-    })),
+    labels: project.labels?.map((label) => {
+      const value = label.labelValue[0];
+
+      return {
+        name: label.labelName,
+        value:
+          value.blockType === "Text"
+            ? {
+                type: "text",
+                text: value.text,
+              }
+            : {
+                type: "link",
+                text: value.name,
+                url: value.url,
+              },
+      };
+    }),
     description: convertLexicalToHTML({
       data: project.description as unknown as ConvertLexicalToHTMLArgs["data"],
     }),

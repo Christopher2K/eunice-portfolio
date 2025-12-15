@@ -1,7 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { css } from "styled/css";
 import { VStack } from "styled/jsx";
 import { Text } from "@/ui/base";
+import type { LabelLink, LabelText } from "../projects.types";
 
 const isUrl = (value: unknown): boolean => {
   try {
@@ -14,33 +15,33 @@ const isUrl = (value: unknown): boolean => {
 
 type ProjectLabelProps = {
   name: string;
-  value: string;
+  value: LabelText | LabelLink;
 };
 export const ProjectLabel = ({ name, value }: ProjectLabelProps) => {
-  const renderString = useCallback((value: string) => {
-    if (isUrl(value)) {
+  const content = useMemo(() => {
+    if (value.type === "link") {
       return (
         <dd>
           <Text
             as="a"
-            href={value}
+            href={value.url}
             target="_blank"
             rel="noopener noreferrer"
             variant={{ base: "small", lg: "body" }}
             className={css({ textDecoration: "underline" })}
           >
-            {value}
+            {value.text}
           </Text>
         </dd>
       );
-    } else {
-      <Text as="dd" variant={{ base: "small", lg: "body" }}>
-        {value}
-      </Text>;
     }
 
-    return value;
-  }, []);
+    return (
+      <Text as="dd" variant={{ base: "small", lg: "body" }}>
+        {value.text}
+      </Text>
+    );
+  }, [value]);
 
   return (
     <VStack
@@ -62,7 +63,7 @@ export const ProjectLabel = ({ name, value }: ProjectLabelProps) => {
       <Text as="dt" variant={{ base: "smallSubhead", lg: "subhead" }}>
         {name}
       </Text>
-      {renderString(value)}
+      {content}
     </VStack>
   );
 };
