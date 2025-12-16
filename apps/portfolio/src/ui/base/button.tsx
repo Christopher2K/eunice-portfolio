@@ -1,17 +1,36 @@
-import { Box, type BoxProps } from "styled/jsx";
+import { cx } from "styled/css";
 import { type ButtonVariantProps, button } from "styled/recipes";
 
-export type ButtonProps = BoxProps & ButtonVariantProps;
+type DistributiveOmit<T, U> = T extends unknown
+  ? Pick<T, Exclude<keyof T, U>>
+  : never;
+type PropsOf<T extends React.ElementType> = React.ComponentPropsWithoutRef<T>;
 
-export const Button = ({
+type PolymorphicProps<
+  T extends React.ElementType = React.ElementType,
+  TProps = {},
+> = {
+  as?: T;
+} & TProps &
+  DistributiveOmit<PropsOf<T>, keyof TProps | "as">;
+
+type BaseButtonProps = ButtonVariantProps;
+
+export type ButtonProps<T extends React.ElementType = React.ElementType> =
+  PolymorphicProps<T, BaseButtonProps>;
+
+export const Button = <T extends React.ElementType = "button">({
   size = "small",
-  as = "button",
-  underline = false,
+  variant = "primary",
+  as,
+  className,
   ...props
-}: ButtonProps) => {
+}: ButtonProps<T>) => {
+  const Component = as ?? "button";
   return (
-    <Box as={as} className={button({ size, underline })} {...props}>
-      {props.children}
-    </Box>
+    <Component
+      className={cx(button({ size, variant }), className)}
+      {...props}
+    />
   );
 };

@@ -2,12 +2,18 @@ import { css } from "styled/css";
 import { Box, VStack } from "styled/jsx";
 import { type TextVariantProps, text } from "styled/recipes";
 import { MediaView } from "@/features/media/components/media-view";
-import { Text } from "@/ui/base";
+import { Button, Text } from "@/ui/base";
 import type { SanitizedContent } from "../projects.types";
 
 export type ProjectContentProps = {
   content: SanitizedContent;
 };
+
+const layoutToAlignItems = {
+  left: "flex-start",
+  center: "center",
+  right: "flex-end",
+} as const;
 
 export const ProjectContent = ({ content }: ProjectContentProps) => {
   switch (content.__tag) {
@@ -65,7 +71,41 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
       );
     }
     case "SanitizedLinkContent":
-      return <VStack>Link</VStack>;
+      return (
+        <VStack
+          width="full"
+          px={{ base: "5", lg: "10" }}
+          py={{
+            base: "10",
+            lg: "20",
+          }}
+          gap="0"
+          alignItems={layoutToAlignItems[content.layout]}
+        >
+          <Text
+            variant={{
+              base: "smallSubhead",
+              lg: "subhead",
+            }}
+          >
+            {content.title}
+          </Text>
+
+          <Button
+            as="a"
+            href={content.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            size={{
+              base: "large",
+              lg: "xlarge",
+            }}
+            variant="secondary"
+          >
+            {content.name}
+          </Button>
+        </VStack>
+      );
     case "SanitizedMediaContent":
       return <MediaView content={content} />;
   }

@@ -91,21 +91,21 @@ export const textRecipe = defineRecipe({
         fontWeight: 300,
         fontSize: "32px",
         lineHeight: 1.65,
-        letterSpacing: "1%",
+        letterSpacing: "0.1em",
       },
       buttonLarge: {
         fontFamily: "lausanne",
         fontWeight: 750,
         fontSize: "18px",
         lineHeight: 1.65,
-        letterSpacing: "1%",
+        letterSpacing: "0.1em",
       },
       buttonSmall: {
         fontFamily: "lausanne",
         fontWeight: 750,
         fontSize: "16px",
         lineHeight: 1.65,
-        letterSpacing: "1%",
+        letterSpacing: "0.1em",
       },
       emLarge: {
         fontFamily: "lausanne",
@@ -127,12 +127,26 @@ export const buttonRecipe = defineRecipe({
   className: "button",
   description: "Button styles in the design system",
   base: {
-    _hover: {
-      opacity: 0.5,
+    "&:hover": {
       cursor: "pointer",
     },
   },
   variants: {
+    variant: {
+      primary: {
+        "&:hover": {
+          textDecoration: "underline",
+          textUnderlinePosition: "under",
+        },
+      },
+      secondary: {
+        textDecoration: "underline",
+        textUnderlinePosition: "from-font",
+        "&:hover": {
+          opacity: 0.5,
+        },
+      },
+    },
     size: {
       small: {
         ...(textRecipe.variants?.variant.buttonSmall ?? {}),
@@ -144,13 +158,9 @@ export const buttonRecipe = defineRecipe({
         ...(textRecipe.variants?.variant.buttonXlarge ?? {}),
       },
     },
-    underline: {
-      true: {
-        textDecoration: "underline",
-      },
-    },
   },
   defaultVariants: {
+    variant: "primary",
     size: "small",
   },
 });
