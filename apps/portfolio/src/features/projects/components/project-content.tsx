@@ -42,10 +42,6 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
             base: "full",
             lg: isSmall ? "50%" : "full",
           }}
-          px={{
-            base: "5",
-            lg: "10",
-          }}
         >
           <Box
             className={text(textVariant)}
@@ -74,7 +70,6 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
       return (
         <VStack
           width="full"
-          px={{ base: "5", lg: "10" }}
           py={{
             base: "10",
             lg: "20",
@@ -107,6 +102,16 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
         </VStack>
       );
     case "SanitizedMediaContent":
-      return <MediaView content={content} />;
+      return (
+        <Box
+          width="full"
+          py={{
+            base: "10",
+            lg: "20",
+          }}
+        >
+          <MediaView content={content} />
+        </Box>
+      );
   }
 };
