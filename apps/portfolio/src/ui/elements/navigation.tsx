@@ -127,7 +127,7 @@ export const Navigation = ({ mode }: NavigationProps) => {
           })}
         >
           <Text variant="buttonLarge" className={css({ whiteSpace: "nowrap" })}>
-            Eunice Tchitchiama
+            Eunice T.
           </Text>
         </Link>
 
@@ -224,9 +224,9 @@ export const Navigation = ({ mode }: NavigationProps) => {
             paddingBottom="10"
           >
             <Text variant="smallSubhead">Contact: </Text>
-            <styled.a href="mailto:e.tchitchiama@gmail.com">
+            <styled.a href="mailto:email@gmail.com">
               <Text as="span" variant="buttonSmall">
-                e.tchitchiama@gmail.com
+                email@gmail.com
               </Text>
             </styled.a>
           </VStack>

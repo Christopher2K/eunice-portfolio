@@ -39,12 +39,9 @@ export const Footer = () => {
           gap="1"
         >
           <Text variant="smallSubhead">Contact : </Text>
-          <styled.a
-            href="mailto:e.tchitchiama@gmail.com"
-            _hover={{ opacity: 0.5 }}
-          >
+          <styled.a href="mailto:email@gmail.com" _hover={{ opacity: 0.5 }}>
             <Text as="span" variant="buttonSmall">
-              e.tchitchiama@gmail.com
+              email@gmail.com
             </Text>
           </styled.a>
         </VStack>
