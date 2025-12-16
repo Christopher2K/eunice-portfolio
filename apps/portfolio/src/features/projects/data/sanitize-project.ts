@@ -16,6 +16,7 @@ export const sanitizeContent = (content: ProjectContent): SanitizedContent => {
         __tag: "SanitizedQuoteContent",
         author: content.author,
         text: convertLexicalToHTML({
+          disableContainer: true,
           data: content.text,
         }),
         layout: content.layout,

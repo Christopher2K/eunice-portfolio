@@ -35,7 +35,7 @@ const mediaFullWidthContentSpec: MediaContentRenderSpec = {
       gap="5"
     >
       {content.mediaList.map((media) => (
-        <Fragment>
+        <Fragment key={media.id}>
           <styled.img
             className={css({
               width: "100%",
@@ -66,7 +66,7 @@ const mediaLandscapeContentSpec: MediaContentRenderSpec = {
       }}
     >
       {content.mediaList.map((media) => (
-        <Fragment>
+        <Fragment key={media.id}>
           <styled.img
             className={css({
               width: "100%",
@@ -94,7 +94,7 @@ const mediaDualContentSpec: MediaContentRenderSpec = {
       }}
     >
       {content.mediaList.map((media) => (
-        <Fragment>
+        <Fragment key={media.id}>
           <VStack gap="5" flexGrow={1} flexBasis={0}>
             <styled.img
               className={css({
@@ -141,7 +141,7 @@ const mediaGridContentSpec: MediaContentRenderSpec = {
         width="full"
       >
         {content.mediaList.map((media) => (
-          <Fragment>
+          <Fragment key={media.id}>
             <VStack gap="5" flexGrow={1} flexBasis={0}>
               <styled.img
                 className={css({

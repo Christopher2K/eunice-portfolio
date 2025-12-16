@@ -107,6 +107,18 @@ export const textRecipe = defineRecipe({
         lineHeight: 1.65,
         letterSpacing: "1%",
       },
+      emLarge: {
+        fontFamily: "lausanne",
+        fontWeight: 300,
+        fontSize: "48px",
+        lineHeight: 1.5,
+      },
+      emSmall: {
+        fontFamily: "lausanne",
+        fontWeight: 300,
+        fontSize: "20px",
+        lineHeight: 1.6,
+      },
     },
   },
 });
