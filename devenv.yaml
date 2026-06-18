@@ -7,8 +7,8 @@ inputs:
 # allowUnfree: true
 
 # If you're willing to use a package that's vulnerable
-# permittedInsecurePackages:
-#  - "openssl-1.1.1w"
+permittedInsecurePackages:
+  - "minio-2025-10-15T17-29-55Z"
 
 # If you have more than one devenv you can merge them
 #imports:
