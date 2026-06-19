@@ -42,7 +42,7 @@ const navigationStyle = cva({
   },
 });
 
-export type NavigationProps = Extract<
+export type NavigationProps = Pick<
   RecipeVariant<typeof navigationStyle>,
   "mode"
 >;

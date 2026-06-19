@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
-import viteTsConfigPaths from "vite-tsconfig-paths";
 import svgr from "vite-plugin-svgr";
 import { nitroV2Plugin } from "@tanstack/nitro-v2-vite-plugin";
 
@@ -9,15 +8,15 @@ const config = defineConfig({
   optimizeDeps: {
     exclude: ["@payloadcms/live-preview"],
   },
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
-    // this is the plugin that enables path aliases
-    viteTsConfigPaths({
-      projects: ["./tsconfig.json"],
-    }),
     tanstackStart(),
     viteReact(),
     nitroV2Plugin({
       preset: "node-server",
+      compatibilityDate: "2026-06-18",
     }),
     svgr({
       include: "**/*.svg",

@@ -21,7 +21,7 @@ function RouteComponent() {
       <Text variant="bodyStrong">Body Strong</Text>
       <Text variant="small">Small</Text>
       <Text variant="smallStrong">Small Strong</Text>
-      <Text variant="buttonXLarge">Button Xlarge</Text>
+      <Text variant="buttonXlarge">Button Xlarge</Text>
       <Text variant="buttonLarge">Button Large</Text>
       <Text variant="buttonSmall">Button Small</Text>
       <CloseIcon />

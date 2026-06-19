@@ -53,7 +53,7 @@ export interface FileRoutesByFullPath {
   '/elements': typeof ElementsRoute
   '/sandbox': typeof SandboxRoute
   '/work/$projectId': typeof WorkProjectIdRoute
-  '/work': typeof WorkIndexRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -80,7 +80,7 @@ export interface FileRouteTypes {
     | '/elements'
     | '/sandbox'
     | '/work/$projectId'
-    | '/work'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/about' | '/elements' | '/sandbox' | '/work/$projectId' | '/work'
   id:
@@ -135,7 +135,7 @@ declare module '@tanstack/react-router' {
     '/work/': {
       id: '/work/'
       path: '/work'
-      fullPath: '/work'
+      fullPath: '/work/'
       preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
