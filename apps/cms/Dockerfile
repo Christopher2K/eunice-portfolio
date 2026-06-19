@@ -27,9 +27,34 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV SHARP_FORCE_GLOBAL_LIBVIPS=1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
+
+RUN apk add --no-cache --update \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    vips \
+    vips-dev \
+    vips-heif \
+    libheif \
+    libpng \
+    libjpeg-turbo \
+    libde265 \
+    libwebp \
+    g++ \
+    make \
+    gcc \
+    build-base \
+    python3 \
+    pkgconfig
+
+RUN npm install -g --no-package-lock node-addon-api node-gyp && \
+    npm install -g --no-package-lock --build-from-source sharp && \
+    npm cache clean --force
+
 
 # Remove this line if you do not have this folder
 # COPY --from=builder /app/public ./public
