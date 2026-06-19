@@ -12,6 +12,7 @@ export const env = createEnv({
     S3_REGION: z.string().min(1),
     PAYLOAD_URL: z.string().url(),
     PORTFOLIO_URL: z.string().url(),
+    NODE_ENV: z.enum(["development", "production"]).default("development"),
   },
   runtimeEnv: process.env,
 });
