@@ -27,7 +27,7 @@ export const Route = createFileRoute("/work/$projectId")({
   },
   validateSearch: (searchParams: Record<string, unknown>): WorkSearchParams => {
     return {
-      preview: "preview" in searchParams,
+      preview: searchParams.preview === "true" || searchParams.preview === true,
     };
   },
 });
@@ -66,7 +66,7 @@ function PreviewProjectView({ initialProject }: RouteViewProps) {
   }, [unsanitizedProject]);
 
   const reload = useCallback(() => {
-    router.invalidate({ forcePending: true, sync: true });
+    router.invalidate();
   }, [router]);
 
   return (
