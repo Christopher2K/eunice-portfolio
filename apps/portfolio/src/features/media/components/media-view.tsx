@@ -1,15 +1,9 @@
-import {
-  Fragment,
-  type JSX,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Fragment, type JSX, useMemo } from "react";
 import { css } from "styled/css";
-import { Box, Flex, styled, VStack } from "styled/jsx";
+import { Box, Flex, VStack } from "styled/jsx";
 import { Text } from "@/ui/base";
-import type { SanitizedMedia, SanitizedMediaContent } from "../media.types";
+import type { SanitizedMediaContent } from "../media.types";
+import { MediaItem } from "./media-item";
 
 type CaptionProps = {
   caption?: string | null;
@@ -24,84 +18,6 @@ const Caption = ({ caption }: CaptionProps) => {
     >
       {caption}
     </Text>
-  );
-};
-
-const useInView = () => {
-  const ref = useRef<HTMLElement | null>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsInView(entry.isIntersecting);
-    });
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, isInView };
-};
-
-type MediaItemProps = {
-  media: SanitizedMedia;
-};
-
-const LazyVideo = ({
-  media,
-  className,
-}: MediaItemProps & { className: string }) => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const { ref, isInView } = useInView();
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isInView) {
-      void video.play().catch(() => undefined);
-    } else {
-      video.pause();
-    }
-  }, [isInView]);
-
-  return (
-    <styled.video
-      ref={(node) => {
-        videoRef.current = node;
-        ref.current = node;
-      }}
-      className={className}
-      src={media.url}
-      poster={media.thumbnailURL ?? undefined}
-      aria-label={media.alt}
-      muted
-      playsInline
-      loop
-      preload="none"
-    />
-  );
-};
-
-const MediaItem = ({ media }: MediaItemProps) => {
-  const className = css({ width: "100%", aspectRatio: media.ratio });
-  const isVideo = media.mimeType?.startsWith("video/");
-
-  if (isVideo) {
-    return <LazyVideo media={media} className={className} />;
-  }
-
-  return (
-    <styled.img
-      className={className}
-      src={media.url}
-      alt={media.alt}
-      loading="lazy"
-      decoding="async"
-    />
   );
 };
 
@@ -121,7 +37,7 @@ const mediaFullWidthContentSpec: MediaContentRenderSpec = {
     >
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
-          <MediaItem media={media} />
+          <MediaItem media={media} loading="lazy" />
           <Caption caption={media.caption} />
         </Fragment>
       ))}
@@ -145,7 +61,7 @@ const mediaLandscapeContentSpec: MediaContentRenderSpec = {
     >
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
-          <MediaItem media={media} />
+          <MediaItem media={media} loading="lazy" />
           <Caption caption={media.caption} />
         </Fragment>
       ))}
@@ -167,7 +83,7 @@ const mediaDualContentSpec: MediaContentRenderSpec = {
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
           <VStack gap="5" flexGrow={1} flexBasis={0}>
-            <MediaItem media={media} />
+            <MediaItem media={media} loading="lazy" />
             <Caption caption={media.caption} />
           </VStack>
         </Fragment>
@@ -207,7 +123,7 @@ const mediaGridContentSpec: MediaContentRenderSpec = {
         {content.mediaList.map((media) => (
           <Fragment key={media.id}>
             <VStack gap="5" flexGrow={1} flexBasis={0}>
-              <MediaItem media={media} />
+              <MediaItem media={media} loading="lazy" />
               <Caption caption={media.caption} />
             </VStack>
           </Fragment>

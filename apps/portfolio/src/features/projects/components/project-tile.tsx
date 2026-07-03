@@ -1,21 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { css } from "styled/css";
-import { styled, VStack } from "styled/jsx";
+import { VStack } from "styled/jsx";
+import { MediaItem } from "@/features/media/components/media-item";
+import type { SanitizedMedia } from "@/features/media/media.types";
 import { Text } from "@/ui/base";
 
 type ProjectTileProps = {
   id: string;
-  thumbnail: string;
+  media: SanitizedMedia;
   name: string;
   type: string;
 };
 
-export const ProjectTile = ({
-  id,
-  thumbnail,
-  name,
-  type,
-}: ProjectTileProps) => {
+export const ProjectTile = ({ id, media, name, type }: ProjectTileProps) => {
   return (
     <Link
       to="/work/$projectId"
@@ -27,11 +24,11 @@ export const ProjectTile = ({
           [{type}]
         </Text>
         <Text variant={{ base: "small", lg: "body" }}>{name}</Text>
-        <styled.img
-          src={thumbnail}
-          alt={name}
-          width="100%"
+        <MediaItem
+          media={media}
           aspectRatio="16/9"
+          objectFit="contain"
+          pointerEvents="none"
         />
       </VStack>
     </Link>

@@ -1,7 +1,8 @@
 import { css, cx } from "styled/css";
-import { Box, Flex, styled, VStack } from "styled/jsx";
+import { Box, Flex, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
 import { Text } from "@/ui/base";
+import { MediaItem } from "@/features/media/components/media-item";
 import type { SanitizedProject } from "../projects.types";
 import { ProjectContent } from "./project-content";
 import { ProjectLabel } from "./project-label";
@@ -21,10 +22,9 @@ export const ProjectView = ({
       gap="0"
     >
       {mainImage && (
-        <styled.img
+        <Box
+          width="full"
           className={css({
-            aspectRatio: mainImage.ratio,
-            width: "100%",
             padding: {
               base: "5",
               lg: "10",
@@ -34,9 +34,9 @@ export const ProjectView = ({
               lg: "0",
             },
           })}
-          src={mainImage.url}
-          alt={mainImage.alt}
-        />
+        >
+          <MediaItem media={mainImage} />
+        </Box>
       )}
       <Flex
         flexDirection={{

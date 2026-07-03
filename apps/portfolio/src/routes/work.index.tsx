@@ -36,7 +36,7 @@ function RouteComponent() {
         <ProjectTile
           key={project.id}
           id={project.id.toString()}
-          thumbnail={project.mainImage.url}
+          media={project.mainImage}
           name={project.name}
           type={project.projectType}
         />
