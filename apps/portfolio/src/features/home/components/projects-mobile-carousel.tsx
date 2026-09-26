@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { css } from "styled/css";
 import { Box, HStack, VStack } from "styled/jsx";
+import { MediaItem } from "@/features/media/components/media-item";
 import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 import ArrowRightAltIcon from "@/ui/icons/arrow-right-alt.svg";
@@ -56,13 +57,15 @@ export const ProjectsMobileCarousel = ({
           width="100svw"
           height="100svh"
           position="relative"
-          backgroundPosition="center center"
-          backgroundSize="cover"
+          overflow="hidden"
           scrollSnapAlign="start"
-          style={{
-            backgroundImage: `url(${frame.mainImage.url})`,
-          }}
-        />
+        >
+          <MediaItem
+            media={frame.mainImage}
+            objectFit="cover"
+            className={css({ height: "100%", objectPosition: "center" })}
+          />
+        </Box>
       ))}
 
       <HStack

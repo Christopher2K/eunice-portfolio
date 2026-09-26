@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { css } from "styled/css";
+import { css, cx } from "styled/css";
 import { styled } from "styled/jsx";
 import type { SanitizedMedia } from "../media.types";
 
@@ -66,6 +66,7 @@ export type MediaItemProps = {
   objectFit?: "contain" | "cover";
   loading?: "lazy" | "eager";
   pointerEvents?: "none";
+  className?: string;
 };
 
 export const MediaItem = ({
@@ -74,22 +75,26 @@ export const MediaItem = ({
   objectFit,
   loading,
   pointerEvents,
+  className,
 }: MediaItemProps) => {
-  const className = css({
-    width: "100%",
-    aspectRatio,
-    objectFit,
-    pointerEvents,
-  });
+  const baseClassName = cx(
+    css({
+      width: "100%",
+      aspectRatio,
+      objectFit,
+      pointerEvents,
+    }),
+    className,
+  );
   const isVideo = media.mimeType?.startsWith("video/");
 
   if (isVideo) {
-    return <LazyVideo media={media} className={className} />;
+    return <LazyVideo media={media} className={baseClassName} />;
   }
 
   return (
     <styled.img
-      className={className}
+      className={baseClassName}
       src={media.url}
       alt={media.alt}
       loading={loading}

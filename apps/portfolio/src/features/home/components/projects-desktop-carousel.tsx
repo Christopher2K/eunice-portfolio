@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { css } from "styled/css";
 import { Box, styled, VStack } from "styled/jsx";
+import { MediaItem } from "@/features/media/components/media-item";
 import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 
@@ -26,13 +27,21 @@ export const ProjectsDesktopCarousel = ({
       height="100vh"
       justifyContent="flex-end"
       alignItems="flex-start"
-      backgroundSize="cover"
-      backgroundPosition="center center"
-      style={{
-        backgroundImage: `url(${currentProject.mainImage.url})`,
-      }}
+      position="relative"
+      overflow="hidden"
     >
-      <Box pt="10" px="10" pb="20" color="text">
+      <MediaItem
+        key={currentProject.mainImage.url}
+        media={currentProject.mainImage}
+        objectFit="cover"
+        className={css({
+          position: "absolute",
+          inset: 0,
+          height: "100%",
+          objectPosition: "center",
+        })}
+      />
+      <Box pt="10" px="10" pb="20" color="text" position="relative">
         <Text variant="subhead" className={css({ marginBottom: "5" })}>
           [Selected Work]
         </Text>
