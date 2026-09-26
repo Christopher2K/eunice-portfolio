@@ -2,26 +2,18 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { css } from "styled/css";
 import { Box, styled, VStack } from "styled/jsx";
+import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 
-const Frames = [
-  {
-    name: "Wrensilva",
-    image: "https://picsum.photos/seed/eunice1/1920/1080",
-  },
-  {
-    name: "San Diego Museum of Art",
-    image: "https://picsum.photos/seed/eunice2/1920/1080",
-  },
-  {
-    name: "Chicago MOMA",
-    image: "https://picsum.photos/seed/eunice3/1920/1080",
-  },
-];
+export type ProjectDesktopCarouselProps = {
+  projects: SanitizedProject[];
+};
 
-export const ProjectsDesktopCarousel = () => {
+export const ProjectsDesktopCarousel = ({
+  projects,
+}: ProjectDesktopCarouselProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const currentProject = Frames[selectedIndex];
+  const currentProject = projects[selectedIndex];
 
   const handleItemHover = (index: number) => {
     setSelectedIndex(index);
@@ -37,7 +29,7 @@ export const ProjectsDesktopCarousel = () => {
       backgroundSize="cover"
       backgroundPosition="center center"
       style={{
-        backgroundImage: `url(${currentProject.image})`,
+        backgroundImage: `url(${currentProject.mainImage.url})`,
       }}
     >
       <Box pt="10" px="10" pb="20" color="text">
@@ -52,13 +44,17 @@ export const ProjectsDesktopCarousel = () => {
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          {Frames.map(({ name }, index) => (
+          {projects.map(({ name, id }, index) => (
             <styled.li
               key={name}
               onMouseEnter={() => handleItemHover(index)}
               opacity={index === selectedIndex ? 1 : 0.3}
             >
-              <Link to="/work" className="link">
+              <Link
+                to="/work/$projectId"
+                params={{ projectId: id.toString() }}
+                className="link"
+              >
                 <Text variant="heading4">{name}</Text>
               </Link>
             </styled.li>

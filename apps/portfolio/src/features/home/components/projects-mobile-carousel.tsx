@@ -2,37 +2,29 @@ import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { css } from "styled/css";
 import { Box, HStack, VStack } from "styled/jsx";
+import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 import ArrowRightAltIcon from "@/ui/icons/arrow-right-alt.svg";
 
-const Frames = [
-  {
-    name: "Wrensilva",
-    image: "https://picsum.photos/seed/eunice1/1920/1080",
-  },
-  {
-    name: "San Diego Museum of Art",
-    image: "https://picsum.photos/seed/eunice2/1920/1080",
-  },
-  {
-    name: "Chicago MOMA",
-    image: "https://picsum.photos/seed/eunice3/1920/1080",
-  },
-];
+export type ProjectMobileCarouselProps = {
+  projects: SanitizedProject[];
+};
 
-export const ProjectsMobileCarousel = () => {
+export const ProjectsMobileCarousel = ({
+  projects,
+}: ProjectMobileCarouselProps) => {
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
   const sliderContainer = sliderContainerRef.current;
-  const slideNumber = Frames.length;
-  const currentSlide = Frames[slideIndex];
+  const slideNumber = projects.length;
+  const currentSlide = projects[slideIndex];
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     const frameSize = target.scrollHeight / slideNumber;
     const newIndex = Math.ceil(target.scrollTop / frameSize);
-    if (Frames[newIndex]) {
+    if (projects[newIndex]) {
       setSlideIndex(newIndex);
     }
   };
@@ -58,7 +50,7 @@ export const ProjectsMobileCarousel = () => {
       position="relative"
       scrollbar="hidden"
     >
-      {Frames.map((frame) => (
+      {projects.map((frame) => (
         <Box
           key={frame.name}
           width="100svw"
@@ -68,7 +60,7 @@ export const ProjectsMobileCarousel = () => {
           backgroundSize="cover"
           scrollSnapAlign="start"
           style={{
-            backgroundImage: `url(${frame.image})`,
+            backgroundImage: `url(${frame.mainImage.url})`,
           }}
         />
       ))}
@@ -101,7 +93,7 @@ export const ProjectsMobileCarousel = () => {
           </Link>
         </VStack>
         <VStack gap="3">
-          {Frames.map(({ name }, index) => (
+          {projects.map(({ name }, index) => (
             <Box
               key={name}
               as="button"
