@@ -58,14 +58,14 @@ export const Navigation = ({ mode }: NavigationProps) => {
       name: "Work",
       href: "/work",
     },
-    {
-      name: "About",
-      href: "/about",
-    },
-    {
-      name: "Sandbox",
-      href: "/sandbox",
-    },
+    // {
+    //   name: "About",
+    //   href: "/about",
+    // },
+    // {
+    //   name: "Sandbox",
+    //   href: "/sandbox",
+    // },
   ] as const;
 
   const mobileNavLinks = [
