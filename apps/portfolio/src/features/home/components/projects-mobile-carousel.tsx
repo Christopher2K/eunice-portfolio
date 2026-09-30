@@ -66,8 +66,14 @@ export const ProjectsMobileCarousel = ({
             className={css({
               height: "100%",
               objectPosition: "center",
-              opacity,
             })}
+          />
+          <Box
+            position="absolute"
+            inset={0}
+            backgroundColor="black"
+            style={{ opacity }}
+            pointerEvents="none"
           />
         </Box>
       ))}

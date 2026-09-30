@@ -25,7 +25,7 @@ export const Home: GlobalConfig = {
           name: "opacity",
           type: "number",
           required: true,
-          defaultValue: 1,
+          defaultValue: 0,
           min: 0,
           max: 1,
           admin: {

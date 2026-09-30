@@ -39,8 +39,14 @@ export const ProjectsDesktopCarousel = ({
           inset: 0,
           height: "100%",
           objectPosition: "center",
-          opacity,
         })}
+      />
+      <Box
+        position="absolute"
+        inset={0}
+        backgroundColor="black"
+        opacity={opacity}
+        pointerEvents="none"
       />
       <Box pt="10" px="10" pb="20" color="text" position="relative">
         <Text variant="subhead" className={css({ marginBottom: "5" })}>

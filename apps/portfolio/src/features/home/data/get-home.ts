@@ -4,7 +4,7 @@ import { sanitizeHome } from "./sanitize-home";
 export const getHome = async () => {
   const home = await sdk.findGlobal({
     slug: "home",
-    depth: 1,
+    depth: 2,
   });
 
   return sanitizeHome(home);
