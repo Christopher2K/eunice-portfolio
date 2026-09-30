@@ -37,7 +37,7 @@ const mediaFullWidthContentSpec: MediaContentRenderSpec = {
     >
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
-          <MediaItem media={media} loading="lazy" />
+          <MediaItem media={media} loading="lazy" objectFit="cover" />
           <Caption caption={media.caption} />
         </Fragment>
       ))}
@@ -61,7 +61,7 @@ const mediaLandscapeContentSpec: MediaContentRenderSpec = {
     >
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
-          <MediaItem media={media} loading="lazy" />
+          <MediaItem media={media} loading="lazy" objectFit="cover" />
           <Caption caption={media.caption} />
         </Fragment>
       ))}
@@ -83,7 +83,7 @@ const mediaDualContentSpec: MediaContentRenderSpec = {
       {content.mediaList.map((media) => (
         <Fragment key={media.id}>
           <VStack gap="5" flexGrow={1} flexBasis={0}>
-            <MediaItem media={media} loading="lazy" />
+            <MediaItem media={media} loading="lazy" objectFit="cover" />
             <Caption caption={media.caption} />
           </VStack>
         </Fragment>
@@ -123,7 +123,7 @@ const mediaGridContentSpec: MediaContentRenderSpec = {
         {content.mediaList.map((media) => (
           <Fragment key={media.id}>
             <VStack gap="5" flexGrow={1} flexBasis={0}>
-              <MediaItem media={media} loading="lazy" />
+              <MediaItem media={media} loading="lazy" objectFit="cover" />
               <Caption caption={media.caption} />
             </VStack>
           </Fragment>
