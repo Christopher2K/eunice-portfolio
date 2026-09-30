@@ -45,7 +45,7 @@ export const ProjectsDesktopCarousel = ({
         position="absolute"
         inset={0}
         backgroundColor="black"
-        opacity={opacity}
+        style={{ opacity }}
         pointerEvents="none"
       />
       <Box pt="10" px="10" pb="20" color="text" position="relative">
