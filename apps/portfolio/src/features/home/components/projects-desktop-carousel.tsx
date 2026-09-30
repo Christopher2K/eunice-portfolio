@@ -2,19 +2,19 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { css } from "styled/css";
 import { Box, styled, VStack } from "styled/jsx";
+import type { HomeProject } from "@/features/home/home.types";
 import { MediaItem } from "@/features/media/components/media-item";
-import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 
 export type ProjectDesktopCarouselProps = {
-  projects: SanitizedProject[];
+  projects: HomeProject[];
 };
 
 export const ProjectsDesktopCarousel = ({
   projects,
 }: ProjectDesktopCarouselProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const currentProject = projects[selectedIndex];
+  const { project: currentProject, opacity } = projects[selectedIndex];
 
   const handleItemHover = (index: number) => {
     setSelectedIndex(index);
@@ -39,6 +39,7 @@ export const ProjectsDesktopCarousel = ({
           inset: 0,
           height: "100%",
           objectPosition: "center",
+          opacity,
         })}
       />
       <Box pt="10" px="10" pb="20" color="text" position="relative">
@@ -53,18 +54,18 @@ export const ProjectsDesktopCarousel = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          {projects.map(({ name, id }, index) => (
+          {projects.map(({ project }, index) => (
             <styled.li
-              key={name}
+              key={project.name}
               onMouseEnter={() => handleItemHover(index)}
               opacity={index === selectedIndex ? 1 : 0.3}
             >
               <Link
                 to="/work/$projectId"
-                params={{ projectId: id.toString() }}
+                params={{ projectId: project.id.toString() }}
                 className="link"
               >
-                <Text variant="heading4">{name}</Text>
+                <Text variant="heading4">{project.name}</Text>
               </Link>
             </styled.li>
           ))}

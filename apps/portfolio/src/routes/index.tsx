@@ -1,20 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProjectsDesktopCarousel } from "@/features/home/components/projects-desktop-carousel";
 import { ProjectsMobileCarousel } from "@/features/home/components/projects-mobile-carousel";
-import { getAllProjects } from "@/features/projects/data/get-projects";
+import { getHome } from "@/features/home/data/get-home";
 
 export const Route = createFileRoute("/")({
   component: App,
-  loader: () => getAllProjects(),
+  loader: () => getHome(),
 });
 
 function App() {
-  const projects = Route.useLoaderData();
+  const home = Route.useLoaderData();
 
   return (
     <>
-      <ProjectsMobileCarousel projects={projects} />
-      <ProjectsDesktopCarousel projects={projects} />
+      <ProjectsMobileCarousel projects={home.projects} />
+      <ProjectsDesktopCarousel projects={home.projects} />
     </>
   );
 }

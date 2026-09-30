@@ -2,13 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { css } from "styled/css";
 import { Box, HStack, VStack } from "styled/jsx";
+import type { HomeProject } from "@/features/home/home.types";
 import { MediaItem } from "@/features/media/components/media-item";
-import type { SanitizedProject } from "@/features/projects/projects.types";
 import { Text } from "@/ui/base";
 import ArrowRightAltIcon from "@/ui/icons/arrow-right-alt.svg";
 
 export type ProjectMobileCarouselProps = {
-  projects: SanitizedProject[];
+  projects: HomeProject[];
 };
 
 export const ProjectsMobileCarousel = ({
@@ -19,7 +19,7 @@ export const ProjectsMobileCarousel = ({
 
   const sliderContainer = sliderContainerRef.current;
   const slideNumber = projects.length;
-  const currentSlide = projects[slideIndex];
+  const currentSlide = projects[slideIndex].project;
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
@@ -51,9 +51,9 @@ export const ProjectsMobileCarousel = ({
       position="relative"
       scrollbar="hidden"
     >
-      {projects.map((frame) => (
+      {projects.map(({ project, opacity }) => (
         <Box
-          key={frame.name}
+          key={project.name}
           width="100svw"
           height="100svh"
           position="relative"
@@ -61,9 +61,13 @@ export const ProjectsMobileCarousel = ({
           scrollSnapAlign="start"
         >
           <MediaItem
-            media={frame.mainImage}
+            media={project.mainImage}
             objectFit="cover"
-            className={css({ height: "100%", objectPosition: "center" })}
+            className={css({
+              height: "100%",
+              objectPosition: "center",
+              opacity,
+            })}
           />
         </Box>
       ))}
@@ -96,9 +100,9 @@ export const ProjectsMobileCarousel = ({
           </Link>
         </VStack>
         <VStack gap="3">
-          {projects.map(({ name }, index) => (
+          {projects.map(({ project }, index) => (
             <Box
-              key={name}
+              key={project.name}
               as="button"
               // @ts-expect-error
               type="button"

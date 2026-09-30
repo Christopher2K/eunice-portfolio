@@ -10,6 +10,7 @@ import { Projects } from "./collections/Projects";
 import { ProjectTypes } from "./collections/ProjectTypes";
 import { Users } from "./collections/Users";
 import { env } from "./env/server";
+import { Home } from "./globals/Home";
 import { migrations } from "./migrations";
 
 const filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, ProjectTypes, Projects],
+  globals: [Home],
   cors: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   csrf: [env.PAYLOAD_URL, env.PORTFOLIO_URL],
   editor: lexicalEditor(),
