@@ -45,6 +45,29 @@ const mediaFullWidthContentSpec: MediaContentRenderSpec = {
   ),
 };
 
+const mediaPortraitContentSpec: MediaContentRenderSpec = {
+  precidate: (content) => content.type === "portrait",
+  render: ({ content }) => (
+    <VStack
+      width={{
+        base: "full",
+        lg: "50%",
+      }}
+      mx="auto"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+      gap="5"
+    >
+      {content.mediaList.map((media) => (
+        <Fragment key={media.id}>
+          <MediaItem media={media} loading="lazy" objectFit="cover" />
+          <Caption caption={media.caption} />
+        </Fragment>
+      ))}
+    </VStack>
+  ),
+};
+
 const mediaLandscapeContentSpec: MediaContentRenderSpec = {
   precidate: (content) => content.type === "landscape",
   render: ({ content }) => (
@@ -138,6 +161,7 @@ const renderSpecs = [
   mediaLandscapeContentSpec,
   mediaDualContentSpec,
   mediaGridContentSpec,
+  mediaPortraitContentSpec,
 ] as const;
 
 export type MediaViewProps = {

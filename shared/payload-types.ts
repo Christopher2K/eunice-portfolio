@@ -262,7 +262,7 @@ export interface LinkBlock {
  */
 export interface MediaContentBlock {
   name?: string | null;
-  type: 'fullWidth' | 'landscape' | 'dual' | 'grid';
+  type: 'fullWidth' | 'landscape' | 'portrait' | 'dual' | 'grid';
   mediaList?: (number | Media)[] | null;
   id?: string | null;
   blockName?: string | null;

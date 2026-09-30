@@ -16,6 +16,7 @@ export const MediaContentBlock: Block = {
       options: [
         { label: "Full width", value: "fullWidth" },
         { label: "Landscape", value: "landscape" },
+        { label: "Portrait", value: "portrait" },
         { label: "Dual", value: "dual" },
         { label: "Grid", value: "grid" },
       ],
