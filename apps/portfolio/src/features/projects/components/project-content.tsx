@@ -46,7 +46,7 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
           <Box
             className={text(textVariant)}
             width="full"
-            textAlign={isSmall ? "right" : "center"}
+            textAlign={isSmall ? "left" : "center"}
             // biome-ignore lint/security/noDangerouslySetInnerHtml: Intentional
             dangerouslySetInnerHTML={{ __html: content.text }}
           />
