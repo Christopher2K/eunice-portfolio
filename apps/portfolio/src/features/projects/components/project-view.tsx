@@ -1,8 +1,8 @@
 import { css, cx } from "styled/css";
 import { Box, Flex, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
-import { Text } from "@/ui/base";
 import { MediaItem } from "@/features/media/components/media-item";
+import { Text } from "@/ui/base";
 import type { SanitizedProject } from "../projects.types";
 import { ProjectContent } from "./project-content";
 import { ProjectLabel } from "./project-label";
@@ -76,6 +76,11 @@ export const ProjectView = ({
               base: "heading3",
               lg: "heading1",
             }}
+            className={css({
+              marginTop: {
+                lg: "-16px",
+              },
+            })}
           >
             {name}
           </Text>
