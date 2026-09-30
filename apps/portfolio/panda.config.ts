@@ -15,33 +15,33 @@ export const textRecipe = defineRecipe({
         fontFamily: "lausanne",
         fontWeight: 300,
         fontSize: "80px",
-        lineHeight: 1.5,
+        lineHeight: 1.15,
         letterSpacing: "-2%",
       },
       heading2: {
         fontFamily: "lausanne",
         fontWeight: 300,
         fontSize: "64px",
-        lineHeight: 1.5,
+        lineHeight: 1.15,
       },
       heading3: {
         fontFamily: "lausanne",
         fontWeight: 300,
         fontSize: "48px",
-        lineHeight: 1.5,
+        lineHeight: 1.15,
       },
       heading4: {
         fontFamily: "lausanne",
         fontWeight: 300,
         fontSize: "32px",
-        lineHeight: 1.5,
+        lineHeight: 1.15,
       },
       subhead: {
         fontFamily: "space",
         fontWeight: 400,
         fontSize: "14px",
         lineHeight: 1.5,
-        letterSpacing: "0.04em",
+        letterSpacing: "4%",
         textTransform: "uppercase",
       },
       smallSubhead: {
@@ -49,7 +49,7 @@ export const textRecipe = defineRecipe({
         fontWeight: 400,
         fontSize: "12px",
         lineHeight: 1.5,
-        letterSpacing: "0.04em",
+        letterSpacing: "4%",
         textTransform: "uppercase",
       },
       xsmallSubhead: {
@@ -57,7 +57,7 @@ export const textRecipe = defineRecipe({
         fontWeight: 400,
         fontSize: "10px",
         lineHeight: 1.5,
-        letterSpacing: "0.04em",
+        letterSpacing: "4%",
         textTransform: "uppercase",
       },
       body: {
@@ -137,11 +137,14 @@ export const buttonRecipe = defineRecipe({
         "&:hover": {
           textDecoration: "underline",
           textUnderlinePosition: "under",
+          textUnderlineOffset: "40%",
         },
       },
       secondary: {
         textDecoration: "underline",
         textUnderlinePosition: "from-font",
+        textUnderlineOffset: "40%",
+
         "&:hover": {
           opacity: 0.5,
         },
