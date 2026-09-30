@@ -19,7 +19,10 @@ export const ProjectLabel = ({ name, value }: ProjectLabelProps) => {
             target="_blank"
             rel="noopener noreferrer"
             variant={{ base: "small", lg: "body" }}
-            className={css({ textDecoration: "underline" })}
+            className={css({
+              textDecoration: "underline",
+              textUnderlineOffset: "40%",
+            })}
           >
             {value.text}
           </Text>
