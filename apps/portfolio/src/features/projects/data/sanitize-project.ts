@@ -29,6 +29,15 @@ export const sanitizeContent = (content: ProjectContent): SanitizedContent => {
         url: content.url,
         layout: content.layout,
       };
+    case "ParagraphContent":
+      return {
+        __tag: "SanitizedParagraphContent",
+        title: content.title ?? undefined,
+        text: convertLexicalToHTML({
+          disableContainer: true,
+          data: content.text,
+        }),
+      };
   }
 };
 

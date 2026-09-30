@@ -113,5 +113,45 @@ export const ProjectContent = ({ content }: ProjectContentProps) => {
           <MediaView content={content} />
         </Box>
       );
+
+    case "SanitizedParagraphContent":
+      return (
+        <VStack
+          marginLeft="auto"
+          width={{
+            base: "full",
+            lg: "50%",
+          }}
+          py={{
+            base: "10",
+            lg: "20",
+          }}
+          gap={{
+            base: "5",
+            lg: "0",
+          }}
+        >
+          {content.title && (
+            <Text
+              variant="subhead"
+              className={css({ textAlign: "left", width: "full" })}
+            >
+              {content.title}
+            </Text>
+          )}
+          <Box
+            className={text({
+              variant: {
+                base: "emSmall",
+                lg: "emLarge",
+              },
+            })}
+            width="full"
+            textAlign="left"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Intentional
+            dangerouslySetInnerHTML={{ __html: content.text }}
+          />
+        </VStack>
+      );
   }
 };

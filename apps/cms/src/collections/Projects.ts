@@ -1,6 +1,7 @@
 import type { Media, Project } from "@payload-types";
 import type { CollectionConfig, JSONField } from "payload";
 import { LinkContentBlock } from "@/block/LinkContentBlock";
+import { ParagraphContentBlock } from "@/block/ParagraphContentBlock";
 import { QuoteContentBlock } from "@/block/QuoteContentBlock";
 import { env } from "@/env/server";
 import { LabelBlock } from "../block/LabelBlock";
@@ -73,7 +74,12 @@ export const Projects: CollectionConfig = {
     {
       name: "content",
       type: "blocks",
-      blocks: [MediaContentBlock, QuoteContentBlock, LinkContentBlock],
+      blocks: [
+        MediaContentBlock,
+        QuoteContentBlock,
+        LinkContentBlock,
+        ParagraphContentBlock,
+      ],
     },
     {
       name: "previousProject",

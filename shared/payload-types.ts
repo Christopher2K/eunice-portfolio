@@ -210,7 +210,7 @@ export interface Project {
   } | null;
   projectType: number | ProjectType;
   mainImage: number | Media;
-  content?: (MediaContentBlock | QuoteContentBlock | LinkContentBlock)[] | null;
+  content?: (MediaContentBlock | QuoteContentBlock | LinkContentBlock | ParagraphContentBlock)[] | null;
   previousProject?: null | {
     id?: number;
     name?: string;
@@ -306,6 +306,31 @@ export interface LinkContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'LinkContent';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ParagraphContentBlock".
+ */
+export interface ParagraphContentBlock {
+  title?: string | null;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ParagraphContent';
 }
 export interface Media1 {
   id: number;
@@ -502,6 +527,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         MediaContent?: T | MediaContentBlockSelect<T>;
         QuoteContent?: T | QuoteContentBlockSelect<T>;
         LinkContent?: T | LinkContentBlockSelect<T>;
+        ParagraphContent?: T | ParagraphContentBlockSelect<T>;
       };
   previousProject?: T;
   nextProject?: T;
@@ -573,6 +599,16 @@ export interface LinkContentBlockSelect<T extends boolean = true> {
   name?: T;
   url?: T;
   layout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ParagraphContentBlock_select".
+ */
+export interface ParagraphContentBlockSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
   id?: T;
   blockName?: T;
 }

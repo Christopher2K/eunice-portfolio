@@ -30,10 +30,17 @@ export type SanitizedLinkContent = {
   layout: LinkContentBlock["layout"];
 };
 
+export type SanitizedParagraphContent = {
+  __tag: "SanitizedParagraphContent";
+  title?: string;
+  text: string;
+};
+
 export type SanitizedContent =
   | SanitizedMediaContent
   | SanitizedQuoteContent
-  | SanitizedLinkContent;
+  | SanitizedLinkContent
+  | SanitizedParagraphContent;
 
 export type SanitizedProject = {
   __tag: "SanitizedProject";
