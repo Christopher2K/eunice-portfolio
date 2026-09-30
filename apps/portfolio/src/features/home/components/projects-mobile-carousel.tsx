@@ -101,7 +101,11 @@ export const ProjectsMobileCarousel = ({
         >
           <Text variant="xsmallSubhead">[Selected work]</Text>
           <Text variant="heading4">{currentSlide.name}</Text>
-          <Link to="/work" className={css({ pointerEvents: "all" })}>
+          <Link
+            to="/work/$projectId"
+            params={{ projectId: currentSlide.id.toString() }}
+            className={css({ pointerEvents: "all" })}
+          >
             <ArrowRightAltIcon />
           </Link>
         </VStack>
