@@ -1,7 +1,9 @@
+import { Link } from "@tanstack/react-router";
 import { css, cx } from "styled/css";
-import { Box, Flex, VStack } from "styled/jsx";
+import { Box, Flex, Stack, styled, VStack } from "styled/jsx";
 import { text } from "styled/recipes";
 import { MediaItem } from "@/features/media/components/media-item";
+import { MediaView } from "@/features/media/components/media-view";
 import { Text } from "@/ui/base";
 import type { SanitizedProject } from "../projects.types";
 import { ProjectContent } from "./project-content";
@@ -11,7 +13,7 @@ export type ProjectViewProps = {
   project: SanitizedProject;
 };
 export const ProjectView = ({
-  project: { name, labels, description, mainImage, content },
+  project: { name, labels, description, mainImage, content, nextProject },
 }: ProjectViewProps) => {
   return (
     <VStack
@@ -154,6 +156,62 @@ export const ProjectView = ({
               content={item}
             />
           ))}
+
+          {nextProject && (
+            <Link to="/work/$projectId" params={{ projectId: nextProject.id }}>
+              <VStack
+                width="full"
+                py={{
+                  base: "20",
+                  lg: "32",
+                }}
+                gap={{
+                  base: "10",
+                  lg: "32",
+                }}
+              >
+                <styled.hr borderColor="white" width="full" opacity={0.3} />
+                <Stack
+                  display="flex"
+                  width="full"
+                  gap="10"
+                  flexDirection={{
+                    base: "column",
+                    lg: "row",
+                  }}
+                >
+                  <VStack
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    flexGrow="5"
+                    flexShrink="0"
+                    flexBasis="0"
+                  >
+                    <Text
+                      variant={{
+                        base: "smallSubhead",
+                        lg: "subhead",
+                      }}
+                    >
+                      Next project
+                    </Text>
+                    <Text
+                      variant={{
+                        base: "heading3",
+                        lg: "heading1",
+                      }}
+                    >
+                      {nextProject.name}
+                    </Text>
+                  </VStack>
+
+                  <Box flexGrow="7" flexShrink="0" flexBasis="0">
+                    <MediaItem media={nextProject.mainImage} loading="lazy" />
+                  </Box>
+                </Stack>
+              </VStack>
+            </Link>
+          )}
         </VStack>
       )}
     </VStack>
