@@ -51,6 +51,11 @@ export type SanitizedProject = {
   mainImage: SanitizedMedia;
   content: Array<SanitizedContent>;
   projectType: string;
+  nextProject?: {
+    id: number;
+    name: string;
+    mainImage: SanitizedMedia;
+  };
 };
 
 export const isSatitizedProject = (

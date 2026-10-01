@@ -76,5 +76,16 @@ export const sanitizeProject = (project: Project): SanitizedProject => {
     }),
     mainImage: sanitizeMedia(project.mainImage),
     content: project.content?.map((content) => sanitizeContent(content)) ?? [],
+    nextProject:
+      project.nextProject != null
+        ? {
+            // biome-ignore lint/style/noNonNullAssertion: we know it does exist
+            id: project.nextProject.id!,
+            // biome-ignore lint/style/noNonNullAssertion: we know it does exist
+            name: project.nextProject.name!,
+            // biome-ignore lint/style/noNonNullAssertion: we know it does exist
+            mainImage: sanitizeMedia(project.nextProject.mainImage!),
+          }
+        : undefined,
   };
 };
